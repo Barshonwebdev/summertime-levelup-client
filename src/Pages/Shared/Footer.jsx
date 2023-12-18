@@ -16,7 +16,7 @@ const Footer = () => {
       fontSize="0.875rem"
     >
       <Box
-        maxW="64rem"
+        maxW=""
         marginX="auto"
         pb="2rem"
         mb="1.5rem"
@@ -34,6 +34,7 @@ const Footer = () => {
             <Heading
               as="h5"
               color="orange.500"
+              mt="1rem"
               mb="0.5rem"
               fontSize="0.875rem"
               fontWeight="600"
@@ -55,6 +56,7 @@ const Footer = () => {
             <Heading
               as="h5"
               color="orange.500"
+              mt="1rem"
               mb="0.5rem"
               fontSize="0.875rem"
               fontWeight="600"
@@ -77,6 +79,7 @@ const Footer = () => {
             <Heading
               as="h5"
               color="orange.500"
+              mt="1rem"
               mb="0.5rem"
               fontSize="0.875rem"
               fontWeight="600"
@@ -99,16 +102,16 @@ const Footer = () => {
           >
             <Flex justifyContent="start" mb="0.5rem" alignItems="baseline">
               <Link href="#" mr="0.5rem">
-                <FaFacebook className="text-xl text-cyan-600"></FaFacebook>
+                <FaFacebook className="text-2xl text-cyan-600"></FaFacebook>
               </Link>
               <Link href="#" mr="0.5rem">
-                <FaInstagram className="text-xl text-cyan-600"></FaInstagram>
+                <FaInstagram className="text-2xl text-cyan-600"></FaInstagram>
               </Link>
               <Link href="#" mr="0.5rem">
-                <FaTwitter className="text-xl text-cyan-600"></FaTwitter>
+                <FaTwitter className="text-2xl text-cyan-600"></FaTwitter>
               </Link>
             </Flex>
-            <List lineHeight="2">
+            <List lineHeight="2" >
               <LinkItem text="Terms" />
               <LinkItem text="Privacy" />
               <LinkItem text="Site Map" />
@@ -116,7 +119,9 @@ const Footer = () => {
           </Box>
         </Flex>
       </Box>
-      <p className="text-center text-red-600">&copy; 2023 Summertime LevelUp, Inc.</p>
+      <p className="text-center text-red-600">
+        &copy; 2023 Summertime LevelUp, Inc.
+      </p>
     </Box>
   );
 };
