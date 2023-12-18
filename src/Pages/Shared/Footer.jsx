@@ -25,7 +25,7 @@ const Footer = () => {
         borderColor="gray.300"
       >
         <Flex flexWrap="wrap" alignItems="start" justifyContent="space-between">
-          <img src={logo} className="w-80" alt="" />
+          <img src={logo} className="w-64" alt="" />
 
           <Box
             w={{ base: "100%", sm: "50%", md: "max-content" }}
@@ -119,7 +119,7 @@ const Footer = () => {
           </Box>
         </Flex>
       </Box>
-      <p className="text-center text-red-600">
+      <p className="text-center text-red-600 text-lg">
         &copy; 2023 Summertime LevelUp, Inc.
       </p>
     </Box>
