@@ -3,7 +3,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa";
 import logo from '../../assets/logo/logo.png'
-import { Box, Heading, Flex, List, ListItem, Link, Text, Center } from '@chakra-ui/react';
+import { Box, Heading, Flex, List, ListItem, Link, Text } from '@chakra-ui/react';
 
 const Footer = () => {
   return (
