@@ -18,7 +18,7 @@ const Header = () => {
         {/* desktop view  */}
         <div className="bg-orange-600 hidden  text-white p-1 md:flex items-center px-10">
           <div>
-            <div className="bg-white md:w-2/5 rounded px-2">
+            <div className=" md:w-2/5 rounded px-2">
               <img className="" src={logo} alt="" />
             </div>
           </div>
