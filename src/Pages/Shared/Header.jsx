@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from '../../assets/logo/logo.png'
-import font from '../../ChakraUI/Font'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaHome } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
@@ -10,21 +9,21 @@ import { GiTeacher } from "react-icons/gi";
 import { RxDashboard } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa";
 
-import { Center, ChakraProvider, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+import { Center,  IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import "@fontsource/cormorant/400.css";
 const Header = () => {
     return (
       <div>
         {/* desktop view  */}
-        <div className=" hidden   p-1 md:flex items-center px-10">
+        <div className=" hidden   p-1 md:flex items-center px-10 md:px-0">
           <div>
             <div className=" md:w-2/5 rounded px-2">
               <img className="" src={logo} alt="" />
             </div>
           </div>
-          <ChakraProvider theme={font}>
+          
             <div className="md:ml-52">
-              <ul className="flex space-x-4 text-xl font-bold ">
+              <ul className="flex space-x-4 text-xl font-semibold ">
                 <Link
                   to="/"
                   className="hover:rounded-lg p-2 hover:bg-white hover:text-orange-600"
@@ -59,7 +58,7 @@ const Header = () => {
                 </button>
               </ul>
             </div>
-          </ChakraProvider>
+          
         </div>
 
         {/* mobile view  */}
