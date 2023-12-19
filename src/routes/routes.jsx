@@ -5,6 +5,7 @@ import Homepage from "../Pages/Home/Homepage/Homepage";
 import Classes from "../Pages/Classes/Classes";
 import Instructors from "../Pages/Instructors/Instructors";
 import Dashboard from "../Pages/Dashboard/Dashboard";
+import Notfound from "../Pages/Notfound/Notfound";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path:"*",
+    element:<Notfound></Notfound>
+  }
 ]);
 
 export default router;
