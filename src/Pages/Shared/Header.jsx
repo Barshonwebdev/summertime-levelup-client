@@ -16,7 +16,7 @@ const Header = () => {
     return (
       <div>
         {/* desktop view  */}
-        <div className="bg-orange-600 hidden  text-white p-1 md:flex items-center px-10">
+        <div className=" hidden   p-1 md:flex items-center px-10">
           <div>
             <div className=" md:w-2/5 rounded px-2">
               <img className="" src={logo} alt="" />
@@ -49,12 +49,14 @@ const Header = () => {
                 >
                   Dashboard
                 </Link>
-                <Link
-                  to="#"
-                  className="hover:rounded-lg p-2 hover:bg-white hover:text-orange-600"
-                >
-                  User
-                </Link>
+                <button className=" ">
+                  <Link
+                    to="/signin"
+                    className="rounded-lg p-2 bg-orange-600 text-white hover:bg-cyan-700 hover:text-white"
+                  >
+                    Sign In
+                  </Link>
+                </button>
               </ul>
             </div>
           </ChakraProvider>
@@ -86,9 +88,7 @@ const Header = () => {
                 <MenuItem as={Link} to="/dashboard" icon={<RxDashboard />}>
                   Dashboard
                 </MenuItem>
-                <MenuItem icon={<FaRegUser />}>
-                  User
-                </MenuItem>
+                <MenuItem icon={<FaRegUser />}>User</MenuItem>
               </MenuList>
             </Menu>
           </div>
