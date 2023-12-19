@@ -51,7 +51,7 @@ const Header = () => {
                 <button className=" ">
                   <Link
                     to="/signin"
-                    className="rounded-lg p-2 bg-orange-600 text-white hover:bg-cyan-700 hover:text-white"
+                    className="rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white"
                   >
                     Sign In
                   </Link>
@@ -88,7 +88,7 @@ const Header = () => {
                   Dashboard
                 </MenuItem>
                 <MenuItem as={Link} to="/signin">
-                  <button className="rounded-lg p-2 bg-orange-600 text-white hover:bg-cyan-700 hover:text-white ">
+                  <button className="rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
                     Sign In
                   </button>
                 </MenuItem>
