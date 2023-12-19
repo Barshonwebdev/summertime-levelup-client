@@ -101,13 +101,13 @@ const Footer = () => {
             mb={{ base: "1.5rem", lg: "0" }}
           >
             <Flex justifyContent="start" mb="0.5rem" alignItems="baseline">
-              <Link href="#" mr="0.5rem">
+              <Link href="#" mr="1rem">
                 <FaFacebook className="text-2xl text-cyan-600"></FaFacebook>
               </Link>
-              <Link href="#" mr="0.5rem">
+              <Link href="#" mr="1rem">
                 <FaInstagram className="text-2xl text-cyan-600"></FaInstagram>
               </Link>
-              <Link href="#" mr="0.5rem">
+              <Link href="#" mr="1rem">
                 <FaTwitter className="text-2xl text-cyan-600"></FaTwitter>
               </Link>
             </Flex>
