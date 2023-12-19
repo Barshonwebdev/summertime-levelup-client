@@ -88,7 +88,11 @@ const Header = () => {
                 <MenuItem as={Link} to="/dashboard" icon={<RxDashboard />}>
                   Dashboard
                 </MenuItem>
-                <MenuItem icon={<FaRegUser />}>User</MenuItem>
+                <MenuItem as={Link} to="/signin">
+                  <button className="rounded-lg p-2 bg-orange-600 text-white hover:bg-cyan-700 hover:text-white ">
+                    Sign In
+                  </button>
+                </MenuItem>
               </MenuList>
             </Menu>
           </div>
