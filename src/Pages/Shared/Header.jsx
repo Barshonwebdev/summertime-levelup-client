@@ -24,14 +24,14 @@ const Header = () => {
     return (
       <div>
         {/* desktop view  */}
-        <div className=" hidden   p-1 md:flex items-center px-10 md:px-0">
+        <div className=" hidden   p-1 md:flex justify-between items-center px-10 md:px-0">
           <div>
-            <div className=" md:w-2/5 rounded px-2">
-              <img className="" src={logo} alt="" />
+            <div className="  rounded px-2">
+              <img className="md:w-1/2" src={logo} alt="" />
             </div>
           </div>
 
-          <div className="md:ml-52">
+          <div className="">
             <ul className="flex space-x-4 text-xl font-semibold items-center ">
               <Link
                 to="/"
@@ -51,32 +51,37 @@ const Header = () => {
               >
                 Instructors
               </Link>
-              <Link
-                to="/dashboard"
-                className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
-              >
-                Dashboard
-              </Link>
+
               {user ? (
-              
-                <div className="flex">
-                  <p className="text-xs">{user.displayName}</p>
-                  <button onClick={handleLogout} className="text-sm mr-10  rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
-                    Logout
-                  </button>
-                  <p></p>
+                <div className="flex space-x-4 items-center">
+                  <Link
+                    to="/dashboard"
+                    className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
+                  >
+                    Dashboard
+                  </Link>
+                  <div className="flex space-x-2 items-center">
+                    <img className="w-7" src={user.photoURL} alt="" />
+                    <button
+                      onClick={handleLogout}
+                      className="text-sm mr-10  rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white "
+                    >
+                      Logout
+                    </button>
+                    <p></p>
+                  </div>
                 </div>
               ) : (
-                 <div>
+                <div>
                   <button className="text-sm ">
                     <Link
                       to="/signin"
                       className="block rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white"
-                   >
+                    >
                       SignIn
-                     </Link>
+                    </Link>
                   </button>
-                 </div>
+                </div>
               )}
             </ul>
           </div>
@@ -105,23 +110,30 @@ const Header = () => {
                 <MenuItem as={Link} to="/instructors" icon={<GiTeacher />}>
                   Instructors
                 </MenuItem>
-                <MenuItem as={Link} to="/dashboard" icon={<RxDashboard />}>
-                  Dashboard
-                </MenuItem>
-                {user? (
-                   <MenuItem className='flex flex-col'>
-                  <p className='text-sm'>{user.email}</p>
-                  <button onClick={handleLogout} className="rounded-lg p-2  bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
-                    Logout
-                  </button>
-                </MenuItem>
+
+                {user ? (
+                  <div>
+                    <MenuItem as={Link} to="/dashboard" icon={<RxDashboard />}>
+                      Dashboard
+                    </MenuItem>
+                    <MenuItem className="flex flex-col">
+                      <img className="w-7 mb-4" src={user.photoURL} alt="" />
+
+                      <button
+                        onClick={handleLogout}
+                        className="rounded-lg p-2  bg-red-800 text-white hover:bg-cyan-700 hover:text-white "
+                      >
+                        Logout
+                      </button>
+                    </MenuItem>
+                  </div>
                 ) : (
-                <MenuItem as={Link} to="/signin">
-                  <button className="rounded-lg p-2  bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
-                    Sign In
-                  </button>
-                </MenuItem> )
-                }
+                  <MenuItem as={Link} to="/signin">
+                    <button className="rounded-lg p-2  bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
+                      Sign In
+                    </button>
+                  </MenuItem>
+                )}
               </MenuList>
             </Menu>
           </div>
