@@ -5,6 +5,7 @@ import registerimg from "../../assets/register.png";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useState } from "react";
 const Signup = () => {
   const {
     register,
@@ -12,10 +13,12 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [error,setError]=useState('');
   const navigate=useNavigate();
   const {createUser}=useAuth();
   const onSubmit = (data) => {
     console.log(data.name,data.password);
+    if(data.password===data.confirm){
     createUser(data.email,data.password)
     .then(result=>{
       if(result){
@@ -27,6 +30,10 @@ const Signup = () => {
 
     }
     })
+  }
+  else {
+    setError('Password didn`t match');
+  }
     
   };
   console.log(errors);
@@ -60,7 +67,7 @@ const Signup = () => {
                   <label>Name</label>
                   <br />
                   <input
-                    className="rounded p-1"
+                    className="rounded p-1 text-black"
                     type="text"
                     placeholder="Full Name"
                     {...register("name", {  })}
@@ -70,7 +77,7 @@ const Signup = () => {
                   <label>Email</label>
                   <br />
                   <input
-                    className="rounded p-1"
+                    className="rounded p-1 text-black"
                     type="text"
                     placeholder="Email"
                     {...register("email", { required: true })}
@@ -80,7 +87,7 @@ const Signup = () => {
                   <label>Password</label>
                   <br />
                   <input
-                    className="rounded p-1"
+                    className="rounded p-1 text-black"
                     type="password"
                     placeholder="password"
                     {...register("password", { required: true })}
@@ -90,10 +97,10 @@ const Signup = () => {
                   <label>Confirm Password</label>
                   <br />
                   <input
-                    className="rounded p-1"
+                    className="rounded p-1 text-black"
                     type="password"
                     placeholder="confirm password"
-                    {...register("confirm", {  })}
+                    {...register("confirm", { required:true })}
                   />
                 </div>
 
@@ -116,6 +123,7 @@ const Signup = () => {
                   />
                 </div>
                 <div>
+                  <p className="my-2 text-center text-yellow-600">{error}</p>
                   <p className="text-white text-sm">
                     Already registered? Please{" "}
                     <Link

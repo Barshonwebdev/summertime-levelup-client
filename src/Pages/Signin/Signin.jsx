@@ -92,7 +92,7 @@ const Signin = () => {
                     <label>Email</label>
                     <br />
                     <input
-                      className="rounded p-1"
+                      className="rounded p-1 text-black"
                       type="text"
                       placeholder="Email"
                       {...register("email", { required: true })}
@@ -102,7 +102,7 @@ const Signin = () => {
                     <label>Password</label>
                     <br />
                     <input
-                      className="rounded p-1"
+                      className="rounded p-1 text-black"
                       type="password"
                       placeholder="password"
                       {...register("password", { required: true })}
