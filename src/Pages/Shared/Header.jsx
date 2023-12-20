@@ -72,8 +72,8 @@ const Header = () => {
                   </div>
                 </div>
               ) : (
-                <div>
-                  <button className="text-sm ">
+                <div className=''>
+                  <button className="text-sm mr-6 ">
                     <Link
                       to="/signin"
                       className="block rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white"
@@ -81,6 +81,7 @@ const Header = () => {
                       SignIn
                     </Link>
                   </button>
+                  
                 </div>
               )}
             </ul>
