@@ -6,7 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useState } from "react";
+const image_token=import.meta.env.VITE_IMGTOKEN;
 const Signup = () => {
+  const img_hosting_url = `https://api.imgbb.com/1/upload?&key=${image_token}`;
   const {
     register,
     reset,
@@ -17,7 +19,8 @@ const Signup = () => {
   const navigate=useNavigate();
   const {createUser,updateUser}=useAuth();
   const onSubmit = (data) => {
-    console.log(data.name,data.password);
+    console.log(data);
+    
     if(data.password===data.confirm){
       if(data.password.length>=6){
     createUser(data.email,data.password)
@@ -25,10 +28,18 @@ const Signup = () => {
       if(result){
       const loggedinUser=result.user;
       console.log(loggedinUser);
-      updateUser(data.name,data.photo)
-      .then(result=>{
-
-      });
+      const formdata = new FormData();
+      formdata.append("image", data.photo[0]);
+      fetch(img_hosting_url, {
+        method: "POST",
+        body: formdata,
+      })
+        .then((res) => res.json())
+        .then((imgResponse) => {
+          console.log(imgResponse);
+          updateUser(data.name, imgResponse.data.url).then((result) => {});
+        });
+      
       reset();
       Swal.fire(`User Account (email: ${loggedinUser.email}) Created`);
       navigate('/');
