@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/logo/logo.png'
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -11,7 +11,16 @@ import { FaRegUser } from "react-icons/fa";
 
 import { Center,  IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import "@fontsource/cormorant/400.css";
+import useAuth from '../../hooks/useAuth';
 const Header = () => {
+  const navigate=useNavigate();
+  const {user,loading,logout}=useAuth();
+  const handleLogout=()=>{
+    logout()
+    .then(result=>{
+      navigate('/signin')
+    })
+  }
     return (
       <div>
         {/* desktop view  */}
@@ -21,44 +30,56 @@ const Header = () => {
               <img className="" src={logo} alt="" />
             </div>
           </div>
-          
-            <div className="md:ml-52">
-              <ul className="flex space-x-4 text-xl font-semibold ">
-                <Link
-                  to="/"
-                  className="hover:rounded-lg p-2 hover:bg-white hover:text-orange-600"
-                >
-                  Home
-                </Link>
-                <Link
-                  to="/classes"
-                  className="hover:rounded-lg p-2 hover:bg-white hover:text-orange-600"
-                >
-                  Classes
-                </Link>
-                <Link
-                  to="/instructors"
-                  className="hover:rounded-lg p-2 hover:bg-white hover:text-orange-600"
-                >
-                  Instructors
-                </Link>
-                <Link
-                  to="/dashboard"
-                  className="hover:rounded-lg p-2 hover:bg-white hover:text-orange-600"
-                >
-                  Dashboard
-                </Link>
-                <button className=" ">
-                  <Link
-                    to="/signin"
-                    className="rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white"
-                  >
-                    Sign In
-                  </Link>
-                </button>
-              </ul>
-            </div>
-          
+
+          <div className="md:ml-52">
+            <ul className="flex space-x-4 text-xl font-semibold items-center ">
+              <Link
+                to="/"
+                className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
+              >
+                Home
+              </Link>
+              <Link
+                to="/classes"
+                className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
+              >
+                Classes
+              </Link>
+              <Link
+                to="/instructors"
+                className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
+              >
+                Instructors
+              </Link>
+              <Link
+                to="/dashboard"
+                className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
+              >
+                Dashboard
+              </Link>
+              {user ? (
+              
+                <div className="flex">
+                  <p className="text-xs">{user.displayName}</p>
+                  <button onClick={handleLogout} className="text-sm mr-10  rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
+                    Logout
+                  </button>
+                  <p></p>
+                </div>
+              ) : (
+                 <div>
+                  <button className="text-sm ">
+                    <Link
+                      to="/signin"
+                      className="block rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white"
+                   >
+                      SignIn
+                     </Link>
+                  </button>
+                 </div>
+              )}
+            </ul>
+          </div>
         </div>
 
         {/* mobile view  */}
@@ -87,11 +108,20 @@ const Header = () => {
                 <MenuItem as={Link} to="/dashboard" icon={<RxDashboard />}>
                   Dashboard
                 </MenuItem>
-                <MenuItem as={Link} to="/signin">
-                  <button className="rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
-                    Sign In
+                {user? (
+                   <MenuItem className='flex flex-col'>
+                  <p className='text-sm'>{user.email}</p>
+                  <button onClick={handleLogout} className="rounded-lg p-2  bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
+                    Logout
                   </button>
                 </MenuItem>
+                ) : (
+                <MenuItem as={Link} to="/signin">
+                  <button className="rounded-lg p-2  bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
+                    Sign In
+                  </button>
+                </MenuItem> )
+                }
               </MenuList>
             </Menu>
           </div>

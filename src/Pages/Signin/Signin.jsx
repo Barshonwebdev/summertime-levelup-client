@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { Card,  CardBody,  Stack } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import loginimg from '../../assets/login.png'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Signin = () => {
     const {
@@ -14,9 +16,49 @@ const Signin = () => {
       handleSubmit,
       formState: { errors },
     } = useForm();
+    const {signinUser,logout,googleSignin,githubSignin}=useAuth();
+    const navigate=useNavigate();
     const onSubmit = (data) => {
-        
+        signinUser(data.email,data.password)
+        .then(result=>{
+          if(result){
+            reset();
+            const loggedinUser=result.user;
+            console.log(loggedinUser);
+            Swal.fire(`User logged in successfully!(email:${loggedinUser.email})`)
+            navigate('/');
+          }
+        })
     };
+
+    const handleGoogleSignin=()=>{
+      googleSignin()
+      .then(result=>{
+        if (result) {
+          reset();
+          const loggedinUser = result.user;
+          console.log(loggedinUser);
+          Swal.fire(
+            `User logged in successfully!(email:${loggedinUser.email})`
+          );
+          navigate("/");
+        }
+      })
+    }
+    const handleGithubSignin=()=>{
+      githubSignin()
+      .then(result=>{
+        if (result) {
+          reset();
+          const loggedinUser = result.user;
+          console.log(loggedinUser);
+          Swal.fire(
+            `User logged in successfully!(email:${loggedinUser.email})`
+          );
+          navigate("/");
+        }
+      })
+    }
     console.log(errors);
     return (
       <div>
@@ -74,15 +116,20 @@ const Signin = () => {
                       value="Sign In"
                     />
                   </div>
+                </form>
+                <div className="flex flex-col justify-center items-center space-y-4 mt-4">
                   <p>Or,</p>
                   <div className="flex items-center space-x-3">
                     <div className="bg-blue-700 text-white rounded-lg">
-                        <button className="flex p-1 items-center"><FaGoogle className="mr-2"></FaGoogle>SignIn</button>
+                      <button onClick={handleGoogleSignin} className="flex p-2 items-center">
+                        <FaGoogle className="mr-2"></FaGoogle>SignIn
+                      </button>
                     </div>
                     <div className="bg-slate-600 text-white rounded-lg">
-                        <button className="flex p-1 items-center"><FaGithub className="mr-2"></FaGithub>Login</button>
+                      <button onClick={handleGithubSignin} className="flex p-2 items-center">
+                        <FaGithub className="mr-2"></FaGithub>Login
+                      </button>
                     </div>
-                    
                   </div>
                   <div>
                     <p className="text-white text-sm">
@@ -95,7 +142,7 @@ const Signin = () => {
                       </Link>
                     </p>
                   </div>
-                </form>
+                </div>
               </div>
             </CardBody>
           </Stack>
