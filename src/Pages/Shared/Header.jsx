@@ -117,8 +117,12 @@ const Header = () => {
                       Dashboard
                     </MenuItem>
                     <MenuItem className="flex flex-col">
-                      <img className="w-7 mb-4" src={user.photoURL} alt="" />
-
+                      {user.photoURL == "null" ? (
+                        <p>{user.displayName}</p>
+                      ) : (
+                        <img className="w-7 mb-4" src={user.photoURL} alt="" />
+                      )}
+                      {}
                       <button
                         onClick={handleLogout}
                         className="rounded-lg p-2  bg-red-800 text-white hover:bg-cyan-700 hover:text-white "

@@ -15,21 +15,30 @@ const Signup = () => {
   } = useForm();
   const [error,setError]=useState('');
   const navigate=useNavigate();
-  const {createUser}=useAuth();
+  const {createUser,updateUser}=useAuth();
   const onSubmit = (data) => {
     console.log(data.name,data.password);
     if(data.password===data.confirm){
+      if(data.password.length>=6){
     createUser(data.email,data.password)
     .then(result=>{
       if(result){
       const loggedinUser=result.user;
       console.log(loggedinUser);
+      updateUser(data.name,data.photo)
+      .then(result=>{
+
+      });
       reset();
       Swal.fire(`User Account (email: ${loggedinUser.email}) Created`);
       navigate('/');
 
     }
     })
+  }
+  else {
+    setError('Password must be atleast 6 characters')
+  }
   }
   else {
     setError('Password didn`t match');
