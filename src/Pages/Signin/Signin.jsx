@@ -66,7 +66,6 @@ const Signin = () => {
         <Card
           direction={{ base: "column-reverse", sm: "row" }}
           overflow="hidden"
-          variant="outline"
           justify="center"
           align="center"
         >

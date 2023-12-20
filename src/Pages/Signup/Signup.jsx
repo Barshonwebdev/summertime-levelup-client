@@ -52,7 +52,7 @@ const Signup = () => {
       <Card
         direction={{ base: "column-reverse", sm: "row-reverse" }}
         overflow="hidden"
-        variant="outline"
+        
         justify="center"
         align="center"
       >
