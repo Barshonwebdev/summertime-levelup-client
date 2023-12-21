@@ -28,7 +28,7 @@ const Header = () => {
           <div>
             <div className="  rounded px-2">
               <img
-                className="md:w-1/2 bg-white rounded-t-full "
+                className="md:w-1/2  "
                 src={logo}
                 alt=""
               />

@@ -66,7 +66,7 @@ const Banner=()=> {
             clickable: true,
           }}
           modules={[FreeMode, Pagination]}
-          className="mySwiper md:rounded-lg"
+          className="mySwiper rounded"
         >
           <SwiperSlide className="">
             <img className="zoom" src={slider1} alt="" />
