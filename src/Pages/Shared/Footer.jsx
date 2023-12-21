@@ -119,7 +119,7 @@ const Footer = () => {
           </Box>
         </Flex>
       </Box>
-      <p className="text-center text-red-600 text-lg">
+      <p className="text-center text-yellow-500 text-lg">
         &copy; 2023 Summertime LevelUp, Inc.
       </p>
     </Box>

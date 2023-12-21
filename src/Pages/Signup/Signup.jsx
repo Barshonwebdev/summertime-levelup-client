@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import axios from "axios";
 const image_token=import.meta.env.VITE_IMGTOKEN;
 const Signup = () => {
   const img_hosting_url = `https://api.imgbb.com/1/upload?&key=${image_token}`;
@@ -25,9 +26,10 @@ const Signup = () => {
       if(data.password.length>=6){
     createUser(data.email,data.password)
     .then(result=>{
-      if(result){
+      
       const loggedinUser=result.user;
       console.log(loggedinUser);
+      
       const formdata = new FormData();
       formdata.append("image", data.photo[0]);
       fetch(img_hosting_url, {
@@ -37,14 +39,28 @@ const Signup = () => {
         .then((res) => res.json())
         .then((imgResponse) => {
           console.log(imgResponse);
-          updateUser(data.name, imgResponse.data.url).then((result) => {});
+          updateUser(data.name, imgResponse.data.url).then((result) => {
+            const savedUser = {
+              name: loggedinUser.displayName,
+              email: loggedinUser.email,
+            };
+
+            axios
+              .post("http://localhost:5000/users", savedUser)
+              .then((response) => {
+                console.log(response);
+                reset();
+                Swal.fire(
+                  `User Account (email: ${loggedinUser.email}) Created`
+                );
+                navigate("/");
+              });
+          });
         });
       
-      reset();
-      Swal.fire(`User Account (email: ${loggedinUser.email}) Created`);
-      navigate('/');
+      
 
-    }
+    
     })
   }
   else {
@@ -131,7 +147,7 @@ const Signup = () => {
                     <input
                       className="rounded p-1 w-full "
                       type="file"
-                      {...register("photo", {  })}
+                      {...register("photo", { required:true })}
                     />
                   </div>
                 

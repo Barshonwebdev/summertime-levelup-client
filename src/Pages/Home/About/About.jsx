@@ -14,7 +14,7 @@ const About = () => {
                 <Text className="md:text-4xl text-xl text-white font-bold">
                   What is Summertime Levelup about?
                 </Text>
-                <Text className='text-white mt-4 italic md:text-lg'>
+                <Text className='text-black mt-4 italic md:text-lg'>
                   Immerse yourself in a transformative martial arts summer camp
                   experience! Our school offers expert instruction in various
                   disciplines, fostering discipline, fitness, and camaraderie.
@@ -27,7 +27,7 @@ const About = () => {
                   enriching environment for students of all levels.
                 </Text>
                 <div className='flex justify-end'>
-                    <p className='font-cursive text-xl md:text-3xl font-bold text-black'>- Summertime Levelup Team</p>
+                    <p className='font-cursive text-xl md:text-3xl font-bold text-slate-900'>- Summertime Levelup Team</p>
                 </div>
               </Stack>
             </CardBody>

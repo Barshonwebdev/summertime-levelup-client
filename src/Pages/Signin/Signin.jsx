@@ -8,6 +8,7 @@ import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Signin = () => {
     const {
@@ -16,7 +17,7 @@ const Signin = () => {
       handleSubmit,
       formState: { errors },
     } = useForm();
-    const {signinUser,logout,googleSignin,githubSignin}=useAuth();
+    const {signinUser,googleSignin,githubSignin}=useAuth();
     const navigate=useNavigate();
     const onSubmit = (data) => {
         signinUser(data.email,data.password)
@@ -34,30 +35,48 @@ const Signin = () => {
     const handleGoogleSignin=()=>{
       googleSignin()
       .then(result=>{
-        if (result) {
+
           reset();
           const loggedinUser = result.user;
           console.log(loggedinUser);
-          Swal.fire(
-            `User logged in successfully!(email:${loggedinUser.email})`
-          );
-          navigate("/");
+          const savedUser={
+            name:loggedinUser.displayName,
+            email:loggedinUser.email,
+          }
+          axios.post('http://localhost:5000/users', savedUser)
+          .then(response=>{
+            console.log(response.data)
+             Swal.fire(
+               `User logged in successfully!(email:${loggedinUser.email})`
+             );
+             navigate("/");
+          })
+         
         }
-      })
+      )
     }
     const handleGithubSignin=()=>{
       githubSignin()
       .then(result=>{
-        if (result) {
+        
           reset();
           const loggedinUser = result.user;
           console.log(loggedinUser);
-          Swal.fire(
-            `User logged in successfully!(email:${loggedinUser.email})`
-          );
-          navigate("/");
+          const savedUser={
+            name:loggedinUser.displayName,
+            email:loggedinUser.email,
+          }
+          axios.post('http://localhost:5000/users',savedUser)
+          .then(response=>{
+            console.log(response.data);
+              Swal.fire(
+                `User logged in successfully!(email:${loggedinUser.email})`
+              );
+              navigate("/");
+          })
+          
         }
-      })
+      )
     }
     console.log(errors);
     return (
