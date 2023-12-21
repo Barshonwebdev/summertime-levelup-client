@@ -11,7 +11,7 @@ const About = () => {
           <Card  backgroundColor="red.400" maxW="md">
             <CardBody>
               <Stack mt="6" spacing="3">
-                <Text className="md:text-4xl text-xl text-white font-bold">
+                <Text className="md:text-4xl text-2xl text-center text-white font-bold">
                   What is Summertime Levelup about?
                 </Text>
                 <Text className='text-black mt-4 italic md:text-lg'>
