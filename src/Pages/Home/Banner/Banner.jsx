@@ -9,6 +9,7 @@ import slider5 from '../../../assets/banner/5.jpg'
 import slider6 from '../../../assets/banner/6.jpg'
 import slider7 from '../../../assets/banner/7.jpg'
 import slider8 from '../../../assets/banner/8.jpg'
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -31,32 +32,29 @@ const Banner=()=> {
           modules={[FreeMode, Pagination]}
           className="mySwiper md:rounded-lg"
         >
-          <SwiperSlide className="relative">
-            <img className="z-20" src={slider1} alt="" />
-            <p className="flex justify-center items-center z-10 absolute">
-              sdsadsadasdas
-            </p>
+          <SwiperSlide className="">
+            <img className="zoom" src={slider1} alt="" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slider2} alt="" />
+            <img className="zoom" src={slider2} alt="" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slider3} alt="" />
+            <img className="zoom" src={slider3} alt="" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slider4} alt="" />
+            <img className="zoom" src={slider4} alt="" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slider5} alt="" />
+            <img className="zoom" src={slider5} alt="" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slider6} alt="" />
+            <img className="zoom" src={slider6} alt="" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slider7} alt="" />
+            <img className="zoom" src={slider7} alt="" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slider8} alt="" />
+            <img className="zoom" src={slider8} alt="" />
           </SwiperSlide>
         </Swiper>
       </div>

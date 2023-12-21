@@ -6,3 +6,8 @@
     font-family: 'Whisper', cursive;
 }
 
+.zoom:hover{
+    transition: ease-in 0.5s ;
+    transform: scale(1.2);
+}
+
