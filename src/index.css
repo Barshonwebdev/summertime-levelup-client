@@ -7,7 +7,7 @@
 }
 
 .zoom:hover{
-    transition: ease-in 0.5s ;
+    transition: linear 0.4s ;
     transform: scale(1.2);
 }
 
