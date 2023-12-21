@@ -27,7 +27,11 @@ const Header = () => {
         <div className=" hidden bg-red-900  p-1 md:flex justify-between items-center px-10 md:px-0">
           <div>
             <div className="  rounded px-2">
-              <img className="md:w-1/2" src={logo} alt="" />
+              <img
+                className="md:w-1/2 bg-white rounded-t-full "
+                src={logo}
+                alt=""
+              />
             </div>
           </div>
 
@@ -88,8 +92,8 @@ const Header = () => {
         </div>
 
         {/* mobile view  */}
-        <div className="md:hidden bg-red-900">
-          <div>
+        <div className="md:hidden ">
+          <div className="">
             <img src={logo} alt="" />
           </div>
           <div className="mx-4">
