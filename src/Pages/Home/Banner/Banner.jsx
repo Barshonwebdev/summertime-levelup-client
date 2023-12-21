@@ -23,8 +23,8 @@ const Banner=()=> {
     <div>
       <div className="hidden md:block">
         <Swiper
-          slidesPerView={3}
-          spaceBetween={30}
+          slidesPerView={4}
+          spaceBetween={20}
           freeMode={true}
           pagination={{
             clickable: true,
