@@ -24,7 +24,7 @@ const Header = () => {
     return (
       <div>
         {/* desktop view  */}
-        <div className=" hidden   p-1 md:flex justify-between items-center px-10 md:px-0">
+        <div className=" hidden bg-red-900  p-1 md:flex justify-between items-center px-10 md:px-0">
           <div>
             <div className="  rounded px-2">
               <img className="md:w-1/2" src={logo} alt="" />
@@ -32,7 +32,7 @@ const Header = () => {
           </div>
 
           <div className="">
-            <ul className="flex space-x-4 text-xl font-semibold items-center ">
+            <ul className="flex text-white space-x-4 text-xl font-semibold items-center ">
               <Link
                 to="/"
                 className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
@@ -64,7 +64,7 @@ const Header = () => {
                     <img className="w-7" src={user.photoURL} alt="" />
                     <button
                       onClick={handleLogout}
-                      className="text-sm mr-10  rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white "
+                      className="text-sm mr-10  rounded-lg p-2 bg-white text-red-800 hover:bg-black hover:text-red-600 "
                     >
                       Logout
                     </button>
@@ -72,16 +72,15 @@ const Header = () => {
                   </div>
                 </div>
               ) : (
-                <div className=''>
+                <div className="">
                   <button className="text-sm mr-6 ">
                     <Link
                       to="/signin"
-                      className="block rounded-lg p-2 bg-red-800 text-white hover:bg-cyan-700 hover:text-white"
+                      className="block rounded-lg p-2 bg-white text-red-800 hover:bg-black hover:text-red-600"
                     >
                       SignIn
                     </Link>
                   </button>
-                  
                 </div>
               )}
             </ul>
@@ -89,17 +88,17 @@ const Header = () => {
         </div>
 
         {/* mobile view  */}
-        <div className="md:hidden">
+        <div className="md:hidden bg-red-900">
           <div>
             <img src={logo} alt="" />
           </div>
           <div className="mx-4">
             <Menu>
               <MenuButton
+                className="mb-5 bg-white"
                 as={IconButton}
                 aria-label="Options"
                 icon={<GiHamburgerMenu></GiHamburgerMenu>}
-                variant="outline"
               />
               <MenuList>
                 <MenuItem as={Link} to="/" icon={<FaHome></FaHome>}>
@@ -126,7 +125,7 @@ const Header = () => {
                       {}
                       <button
                         onClick={handleLogout}
-                        className="rounded-lg p-2  bg-red-800 text-white hover:bg-cyan-700 hover:text-white "
+                        className="rounded-lg p-2  bg-white text-red-800 hover:bg-black hover:text-red-600 "
                       >
                         Logout
                       </button>
@@ -134,7 +133,7 @@ const Header = () => {
                   </div>
                 ) : (
                   <MenuItem as={Link} to="/signin">
-                    <button className="rounded-lg p-2  bg-red-800 text-white hover:bg-cyan-700 hover:text-white ">
+                    <button className="rounded-lg p-2  bg-white text-red-800 hover:bg-black hover:text-red-600 ">
                       Sign In
                     </button>
                   </MenuItem>
