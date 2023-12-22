@@ -8,6 +8,8 @@ import Notfound from "../Pages/Notfound/Notfound";
 import Signin from "../Pages/Signin/Signin";
 import Signup from "../Pages/Signup/Signup";
 import Dashboard from "../Layout/Dashboard";
+import Allusers from "../Pages/Dashboard/Allusers/Allusers";
+import DashboardHomepage from "../Pages/Dashboard/Homepage/DashboardHomepage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,7 +47,12 @@ const router = createBrowserRouter([
     element:<Dashboard></Dashboard>,
     children: [
       {
-
+        path:'homepage',
+        element: <DashboardHomepage></DashboardHomepage>
+      },
+      {
+        path:'allusers',
+        element:<Allusers></Allusers>
       }
     ]
   }

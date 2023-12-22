@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../Pages/Shared/Header';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import Footer from '../Pages/Shared/Footer';
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, useDisclosure } from '@chakra-ui/react';
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, Input, Text, useDisclosure } from '@chakra-ui/react';
 
 const Dashboard = () => {
     
@@ -15,11 +15,19 @@ const Dashboard = () => {
       <div>
         <Header></Header>
 
-        <div className='flex justify-between my-10 '>
+        <div className="flex justify-center flex-col items-center my-24 ">
           {/* drawer start */}
-          <div>
-            <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-              Open
+          <div className="mb-5 flex flex-col items-center ">
+            <Heading
+              size="lg"
+              fontStyle="italic"
+              color="gray.600"
+              marginBottom="5"
+            >
+              Welcome to the Dashboard
+            </Heading>
+            <Button ref={btnRef} colorScheme="red" onClick={onOpen}>
+              Open Dashboard
             </Button>
             <Drawer
               isOpen={isOpen}
@@ -27,28 +35,43 @@ const Dashboard = () => {
               onClose={onClose}
               finalFocusRef={btnRef}
               size={"xs"}
+              colorScheme="blue"
             >
               <DrawerOverlay />
-              <DrawerContent>
+              <DrawerContent backgroundColor="red.800" color="white">
                 <DrawerCloseButton />
-                <DrawerHeader>Create your account</DrawerHeader>
+                <DrawerHeader>Dashboard</DrawerHeader>
 
                 <DrawerBody>
-                  <Input placeholder="Type here..." />
+                  <div className="mt-5 flex flex-col space-y-5">
+                    
+                      <Button onClick={onClose}>
+                        <Link to="/dashboard/homepage">
+                          User Home
+                        </Link>
+                        
+                      </Button>
+                      <Button onClick={onClose}>
+                        <Link to="/dashboard/allusers">
+                          Manage All users
+                        </Link>
+                        
+                      </Button>
+                    
+                  </div>
                 </DrawerBody>
 
                 <DrawerFooter>
-                  <Button variant="outline" mr={3} onClick={onClose}>
-                    Cancel
+                  <Button mr={3} onClick={onClose}>
+                    Close Dashboard
                   </Button>
-                  <Button colorScheme="blue">Save</Button>
                 </DrawerFooter>
               </DrawerContent>
             </Drawer>
           </div>
 
           <div>
-            content
+            <Outlet></Outlet>
           </div>
           {/* drawer end */}
         </div>

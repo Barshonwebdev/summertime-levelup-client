@@ -59,7 +59,7 @@ const Header = () => {
               {user ? (
                 <div className="flex space-x-4 items-center">
                   <Link
-                    to="/dashboard"
+                    to="/dashboard/homepage"
                     className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
                   >
                     Dashboard
@@ -117,7 +117,7 @@ const Header = () => {
 
                 {user ? (
                   <div>
-                    <MenuItem as={Link} to="/dashboard" icon={<RxDashboard />}>
+                    <MenuItem as={Link} to="/dashboard/homepage" icon={<RxDashboard />}>
                       Dashboard
                     </MenuItem>
                     <MenuItem className="flex flex-col">
