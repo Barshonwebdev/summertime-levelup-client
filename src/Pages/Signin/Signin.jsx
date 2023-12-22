@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Card,  CardBody,  Stack } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import loginimg from '../../assets/login.png'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
@@ -19,6 +19,8 @@ const Signin = () => {
     } = useForm();
     const {signinUser,googleSignin,githubSignin}=useAuth();
     const navigate=useNavigate();
+    const location= useLocation();
+    const from=location.state?.from?.pathname || "/";
     const onSubmit = (data) => {
         signinUser(data.email,data.password)
         .then(result=>{
@@ -27,7 +29,7 @@ const Signin = () => {
             const loggedinUser=result.user;
             console.log(loggedinUser);
             Swal.fire(`User logged in successfully!(email:${loggedinUser.email})`)
-            navigate('/');
+            navigate(from, {replace:true});
           }
         })
     };
@@ -45,12 +47,15 @@ const Signin = () => {
           }
           axios.post('http://localhost:5000/users', savedUser)
           .then(response=>{
-            console.log(response.data)
+            console.log(response.data);
+             console.log(location);
+            navigate(from, { replace: true });
              Swal.fire(
                `User logged in successfully!(email:${loggedinUser.email})`
              );
-             navigate("/");
+             
           })
+         
          
         }
       )
@@ -72,7 +77,7 @@ const Signin = () => {
               Swal.fire(
                 `User logged in successfully!(email:${loggedinUser.email})`
               );
-              navigate("/");
+              navigate(from,{replace:true});
           })
           
         }
