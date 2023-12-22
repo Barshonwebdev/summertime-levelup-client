@@ -8,7 +8,7 @@ const About = () => {
           <img className="" src={aboutImg} alt="" />
         </div>
         <div className="flex order-1 md:order-2 mx-4 ">
-          <Card  backgroundColor="red.400" maxW="md">
+          <Card  backgroundColor="blue.500" maxW="md">
             <CardBody>
               <Stack mt="6" spacing="3">
                 <Text className="md:text-4xl text-2xl text-center text-white font-bold">
