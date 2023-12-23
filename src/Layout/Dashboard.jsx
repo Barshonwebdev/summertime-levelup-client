@@ -130,7 +130,7 @@ const Dashboard = () => {
                   </div>
                 </DrawerBody>
 
-                <DrawerFooter>
+                <DrawerFooter >
                   <Button colorScheme="red" mr={3} onClick={onClose}>
                     Close Dashboard
                   </Button>
