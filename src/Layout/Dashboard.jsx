@@ -57,14 +57,20 @@ const Dashboard = () => {
                     {isAdmin ? (
                       <>
                         <Button onClick={onClose}>
-                          <Link className="flex items-center">
+                          <Link
+                            to="/dashboard/adminhome"
+                            className="flex items-center"
+                          >
                             <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
                             Admin Home
                           </Link>
                         </Button>
 
                         <Button onClick={onClose}>
-                          <Link className="flex items-center">
+                          <Link
+                            to="/dashboard/allclasses"
+                            className="flex items-center"
+                          >
                             <FaUsersBetweenLines className="mr-1 text-xl text-yellow-700"></FaUsersBetweenLines>
                             Manage Classes
                           </Link>
@@ -83,7 +89,10 @@ const Dashboard = () => {
                     ) : isInstructor ? (
                       <>
                         <Button onClick={onClose}>
-                          <Link className="flex items-center">
+                          <Link
+                            to="/dashboard/instructorhome"
+                            className="flex items-center"
+                          >
                             {" "}
                             <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
                             Instructor Home
@@ -91,14 +100,20 @@ const Dashboard = () => {
                         </Button>
 
                         <Button onClick={onClose}>
-                          <Link className="flex items-center">
+                          <Link
+                            to="/dashboard/createclass"
+                            className="flex items-center"
+                          >
                             <FaUsersCog className="mr-1 text-xl text-green-700"></FaUsersCog>{" "}
                             Create Classroom
                           </Link>
                         </Button>
 
                         <Button onClick={onClose}>
-                          <Link className="flex items-center">
+                          <Link
+                            to="/dashboard/myclasses"
+                            className="flex items-center"
+                          >
                             <FaUsersBetweenLines className="mr-1 text-xl text-yellow-700"></FaUsersBetweenLines>
                             My Classrooms
                           </Link>
@@ -107,28 +122,40 @@ const Dashboard = () => {
                     ) : (
                       <>
                         <Button onClick={onClose}>
-                          <Link className="flex items-center">
+                          <Link
+                            to="/dashboard/userhome"
+                            className="flex items-center"
+                          >
                             <FaHome className="mr-1 text-xl text-blue-700"></FaHome>{" "}
                             User Home
                           </Link>
                         </Button>
 
                         <Button onClick={onClose}>
-                          <Link className="flex items-center">
+                          <Link
+                            to="/dashboard/selected"
+                            className="flex items-center"
+                          >
                             <SiGoogleclassroom className="mr-1 text-xl text-yellow-700"></SiGoogleclassroom>{" "}
                             Selected Classes
                           </Link>
                         </Button>
 
                         <Button onClick={onClose}>
-                          <Link className="flex items-center">
+                          <Link
+                            to="/dashboard/enrolled"
+                            className="flex items-center"
+                          >
                             <TiTick className="mr-1 text-xl text-violet-700"></TiTick>{" "}
                             Enrolled Classes
                           </Link>
                         </Button>
 
                         <Button onClick={onClose}>
-                          <Link className="flex items-center">
+                          <Link
+                            to="/dashboard/paymenthistory"
+                            className="flex items-center"
+                          >
                             <BiSolidWallet className="mr-1 text-xl text-green-700"></BiSolidWallet>
                             Payment History
                           </Link>
