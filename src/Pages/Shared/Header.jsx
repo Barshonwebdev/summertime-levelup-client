@@ -37,7 +37,7 @@ const Header = () => {
               <img className="md:w-1/2  " src={logo} alt="" />
             </div>
           </div>
-          <div className='flex items-center space-x-60'>
+          <div className='flex items-center'>
             <div>
               <img className="w-24" src={headerimg} alt="" />
             </div>
