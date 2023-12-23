@@ -109,7 +109,7 @@ const Dashboard = () => {
                 </DrawerBody>
 
                 <DrawerFooter>
-                  <Button mr={3} onClick={onClose}>
+                  <Button colorScheme='red' mr={3} onClick={onClose}>
                     Close Dashboard
                   </Button>
                 </DrawerFooter>
