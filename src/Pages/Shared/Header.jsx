@@ -12,9 +12,15 @@ import { FaRegUser } from "react-icons/fa";
 import { Center,  IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import "@fontsource/cormorant/400.css";
 import useAuth from '../../hooks/useAuth';
+import useAdmin from '../../hooks/useAdmin';
+import useInstructor from '../../hooks/useInstructor';
 const Header = () => {
   const navigate=useNavigate();
   const {user,loading,logout}=useAuth();
+  const [isAdmin]=useAdmin();
+  console.log(isAdmin);
+  const [isInstructor]=useInstructor();
+  console.log(isInstructor);
   const handleLogout=()=>{
     logout()
     .then(result=>{
@@ -59,7 +65,7 @@ const Header = () => {
               {user ? (
                 <div className="flex space-x-4 items-center">
                   <Link
-                    to="/dashboard/homepage"
+                    to="/dashboard"
                     className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
                   >
                     Dashboard
@@ -117,7 +123,7 @@ const Header = () => {
 
                 {user ? (
                   <div>
-                    <MenuItem as={Link} to="/dashboard/homepage" icon={<RxDashboard />}>
+                    <MenuItem as={Link} to="/dashboard" icon={<RxDashboard />}>
                       Dashboard
                     </MenuItem>
                     <MenuItem className="flex flex-col">
