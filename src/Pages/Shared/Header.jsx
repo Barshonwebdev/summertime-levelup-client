@@ -38,14 +38,14 @@ const Header = () => {
             </div>
           </div>
           <div className='flex items-center'>
-            <div>
+            <div className='me-5'>
               <img className="w-24" src={headerimg} alt="" />
             </div>
             <div className="">
               <ul className="flex text-red-900 space-x-4 text-xl font-semibold items-center ">
                 <Link
                   to="/"
-                  className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
+                  className="hover:rounded-lg p-2  hover:bg-white hover:text-red-700"
                 >
                   Home
                 </Link>

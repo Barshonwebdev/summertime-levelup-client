@@ -10,13 +10,16 @@ import { FaUsersCog } from "react-icons/fa";
 import { BiSolidWallet } from "react-icons/bi";
 import { SiGoogleclassroom } from "react-icons/si";
 import { TiTick } from "react-icons/ti";
+import useAdmin from '../hooks/useAdmin';
+import useInstructor from '../hooks/useInstructor';
 
 const Dashboard = () => {
     
       const { isOpen, onOpen, onClose } = useDisclosure();
       const btnRef = React.useRef();
 
-     
+      const [isAdmin]=useAdmin();
+      const [isInstructor]=useInstructor();
     
     return (
       <div>
@@ -51,86 +54,91 @@ const Dashboard = () => {
 
                 <DrawerBody>
                   <div className="mt-5 flex flex-col space-y-5">
-                    <Button onClick={onClose}>
-                      <Link
-                        className="flex items-center"
-                        to="/dashboard/homepage"
-                      >
-                        <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
-                        Admin Home
-                      </Link>
-                    </Button>
+                    {isAdmin ? (
+                      <>
+                        <Button onClick={onClose}>
+                          <Link className="flex items-center">
+                            <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
+                            Admin Home
+                          </Link>
+                        </Button>
 
-                    <Button onClick={onClose}>
-                      <Link className="flex items-center">
-                        <FaUsersBetweenLines className="mr-1 text-xl text-yellow-700"></FaUsersBetweenLines>
-                        Manage Classes
-                      </Link>
-                    </Button>
+                        <Button onClick={onClose}>
+                          <Link className="flex items-center">
+                            <FaUsersBetweenLines className="mr-1 text-xl text-yellow-700"></FaUsersBetweenLines>
+                            Manage Classes
+                          </Link>
+                        </Button>
 
-                    <Button onClick={onClose}>
-                      <Link
-                        className="flex items-center"
-                        to="/dashboard/allusers"
-                      >
-                        <LuUsers2 className="mr-1 text-xl text-green-700"></LuUsers2>{" "}
-                        Manage All users
-                      </Link>
-                    </Button>
+                        <Button onClick={onClose}>
+                          <Link
+                            className="flex items-center"
+                            to="/dashboard/allusers"
+                          >
+                            <LuUsers2 className="mr-1 text-xl text-green-700"></LuUsers2>{" "}
+                            Manage All users
+                          </Link>
+                        </Button>
+                      </>
+                    ) : isInstructor ? (
+                      <>
+                        <Button onClick={onClose}>
+                          <Link className="flex items-center">
+                            {" "}
+                            <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
+                            Instructor Home
+                          </Link>
+                        </Button>
 
-                    <Button onClick={onClose}>
-                      <Link className="flex items-center">
-                        <FaHome className="mr-1 text-xl text-blue-700"></FaHome>{" "}
-                        User Home
-                      </Link>
-                    </Button>
+                        <Button onClick={onClose}>
+                          <Link className="flex items-center">
+                            <FaUsersCog className="mr-1 text-xl text-green-700"></FaUsersCog>{" "}
+                            Create Classroom
+                          </Link>
+                        </Button>
 
-                    <Button onClick={onClose}>
-                      <Link className="flex items-center">
-                        <SiGoogleclassroom className="mr-1 text-xl text-yellow-700"></SiGoogleclassroom>{" "}
-                        Selected Classes
-                      </Link>
-                    </Button>
+                        <Button onClick={onClose}>
+                          <Link className="flex items-center">
+                            <FaUsersBetweenLines className="mr-1 text-xl text-yellow-700"></FaUsersBetweenLines>
+                            My Classrooms
+                          </Link>
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button onClick={onClose}>
+                          <Link className="flex items-center">
+                            <FaHome className="mr-1 text-xl text-blue-700"></FaHome>{" "}
+                            User Home
+                          </Link>
+                        </Button>
 
-                    <Button onClick={onClose}>
-                      <Link className="flex items-center">
-                        <TiTick className="mr-1 text-xl text-violet-700"></TiTick>{" "}
-                        Enrolled Classes
-                      </Link>
-                    </Button>
+                        <Button onClick={onClose}>
+                          <Link className="flex items-center">
+                            <SiGoogleclassroom className="mr-1 text-xl text-yellow-700"></SiGoogleclassroom>{" "}
+                            Selected Classes
+                          </Link>
+                        </Button>
 
-                    <Button onClick={onClose}>
-                      <Link className="flex items-center">
-                        <BiSolidWallet className="mr-1 text-xl text-green-700"></BiSolidWallet>
-                        Payment History
-                      </Link>
-                    </Button>
+                        <Button onClick={onClose}>
+                          <Link className="flex items-center">
+                            <TiTick className="mr-1 text-xl text-violet-700"></TiTick>{" "}
+                            Enrolled Classes
+                          </Link>
+                        </Button>
 
-                    <Button onClick={onClose}>
-                      <Link className="flex items-center">
-                        {" "}
-                        <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
-                        Instructor Home
-                      </Link>
-                    </Button>
-
-                    <Button onClick={onClose}>
-                      <Link className="flex items-center">
-                        <FaUsersCog className="mr-1 text-xl text-green-700"></FaUsersCog>{" "}
-                        Create Classroom
-                      </Link>
-                    </Button>
-
-                    <Button onClick={onClose}>
-                      <Link className="flex items-center">
-                        <FaUsersBetweenLines className="mr-1 text-xl text-yellow-700"></FaUsersBetweenLines>
-                        My Classrooms
-                      </Link>
-                    </Button>
+                        <Button onClick={onClose}>
+                          <Link className="flex items-center">
+                            <BiSolidWallet className="mr-1 text-xl text-green-700"></BiSolidWallet>
+                            Payment History
+                          </Link>
+                        </Button>
+                      </>
+                    )}
                   </div>
                 </DrawerBody>
 
-                <DrawerFooter >
+                <DrawerFooter>
                   <Button colorScheme="red" mr={3} onClick={onClose}>
                     Close Dashboard
                   </Button>
