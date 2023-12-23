@@ -3,6 +3,13 @@ import Header from '../Pages/Shared/Header';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import Footer from '../Pages/Shared/Footer';
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, Input, Text, useDisclosure } from '@chakra-ui/react';
+import { FaHome } from "react-icons/fa";
+import { LuUsers2 } from "react-icons/lu";
+import { FaUsersBetweenLines } from "react-icons/fa6";
+import { FaUsersCog } from "react-icons/fa";
+import { BiSolidWallet } from "react-icons/bi";
+import { SiGoogleclassroom } from "react-icons/si";
+import { TiTick } from "react-icons/ti";
 
 const Dashboard = () => {
     
@@ -44,72 +51,87 @@ const Dashboard = () => {
 
                 <DrawerBody>
                   <div className="mt-5 flex flex-col space-y-5">
-                    
-                      <Button onClick={onClose}>
-                        <Link to="/dashboard/homepage">
-                          Admin Home
-                        </Link>
-                      </Button>
+                    <Button onClick={onClose}>
+                      <Link
+                        className="flex items-center"
+                        to="/dashboard/homepage"
+                      >
+                        <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
+                        Admin Home
+                      </Link>
+                    </Button>
 
-                      <Button onClick={onClose}>
-                        <Link>
-                          Manage Classes
-                        </Link>
-                      </Button>
+                    <Button onClick={onClose}>
+                      <Link className="flex items-center">
+                        <FaUsersBetweenLines className="mr-1 text-xl text-yellow-700"></FaUsersBetweenLines>
+                        Manage Classes
+                      </Link>
+                    </Button>
 
-                      <Button onClick={onClose}>
-                        <Link to="/dashboard/allusers">
-                          Manage All users
-                        </Link>
-                      </Button>
+                    <Button onClick={onClose}>
+                      <Link
+                        className="flex items-center"
+                        to="/dashboard/allusers"
+                      >
+                        <LuUsers2 className="mr-1 text-xl text-green-700"></LuUsers2>{" "}
+                        Manage All users
+                      </Link>
+                    </Button>
 
-                      <Button onClick={onClose}>
-                        <Link>
-                          User Home
-                        </Link>
-                      </Button>
+                    <Button onClick={onClose}>
+                      <Link className="flex items-center">
+                        <FaHome className="mr-1 text-xl text-blue-700"></FaHome>{" "}
+                        User Home
+                      </Link>
+                    </Button>
 
-                      <Button onClick={onClose}>
-                        <Link>
-                          Selected Classes
-                        </Link>
-                      </Button>
+                    <Button onClick={onClose}>
+                      <Link className="flex items-center">
+                        <SiGoogleclassroom className="mr-1 text-xl text-yellow-700"></SiGoogleclassroom>{" "}
+                        Selected Classes
+                      </Link>
+                    </Button>
 
-                      <Button onClick={onClose}>
-                        <Link>
-                          Enrolled Classes
-                        </Link>
-                      </Button>
+                    <Button onClick={onClose}>
+                      <Link className="flex items-center">
+                        <TiTick className="mr-1 text-xl text-violet-700"></TiTick>{" "}
+                        Enrolled Classes
+                      </Link>
+                    </Button>
 
-                      <Button onClick={onClose}>
-                        <Link>
-                          Payment History
-                        </Link>
-                      </Button>
+                    <Button onClick={onClose}>
+                      <Link className="flex items-center">
+                        <BiSolidWallet className="mr-1 text-xl text-green-700"></BiSolidWallet>
+                        Payment History
+                      </Link>
+                    </Button>
 
-                      <Button onClick={onClose}>
-                        <Link>
-                          Instructor Home
-                        </Link>
-                      </Button>
+                    <Button onClick={onClose}>
+                      <Link className="flex items-center">
+                        {" "}
+                        <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
+                        Instructor Home
+                      </Link>
+                    </Button>
 
-                      <Button onClick={onClose}>
-                        <Link>
-                          Create Classroom
-                        </Link>
-                      </Button>
+                    <Button onClick={onClose}>
+                      <Link className="flex items-center">
+                        <FaUsersCog className="mr-1 text-xl text-green-700"></FaUsersCog>{" "}
+                        Create Classroom
+                      </Link>
+                    </Button>
 
-                      <Button onClick={onClose}>
-                        <Link>
-                          My Classrooms
-                        </Link>
-                      </Button>
-                    
+                    <Button onClick={onClose}>
+                      <Link className="flex items-center">
+                        <FaUsersBetweenLines className="mr-1 text-xl text-yellow-700"></FaUsersBetweenLines>
+                        My Classrooms
+                      </Link>
+                    </Button>
                   </div>
                 </DrawerBody>
 
                 <DrawerFooter>
-                  <Button colorScheme='red' mr={3} onClick={onClose}>
+                  <Button colorScheme="red" mr={3} onClick={onClose}>
                     Close Dashboard
                   </Button>
                 </DrawerFooter>
