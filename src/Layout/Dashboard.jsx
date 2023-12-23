@@ -47,15 +47,62 @@ const Dashboard = () => {
                     
                       <Button onClick={onClose}>
                         <Link to="/dashboard/homepage">
-                          User Home
+                          Admin Home
                         </Link>
-                        
                       </Button>
+
+                      <Button onClick={onClose}>
+                        <Link>
+                          Manage Classes
+                        </Link>
+                      </Button>
+
                       <Button onClick={onClose}>
                         <Link to="/dashboard/allusers">
                           Manage All users
                         </Link>
-                        
+                      </Button>
+
+                      <Button onClick={onClose}>
+                        <Link>
+                          User Home
+                        </Link>
+                      </Button>
+
+                      <Button onClick={onClose}>
+                        <Link>
+                          Selected Classes
+                        </Link>
+                      </Button>
+
+                      <Button onClick={onClose}>
+                        <Link>
+                          Enrolled Classes
+                        </Link>
+                      </Button>
+
+                      <Button onClick={onClose}>
+                        <Link>
+                          Payment History
+                        </Link>
+                      </Button>
+
+                      <Button onClick={onClose}>
+                        <Link>
+                          Instructor Home
+                        </Link>
+                      </Button>
+
+                      <Button onClick={onClose}>
+                        <Link>
+                          Create Classroom
+                        </Link>
+                      </Button>
+
+                      <Button onClick={onClose}>
+                        <Link>
+                          My Classrooms
+                        </Link>
                       </Button>
                     
                   </div>
