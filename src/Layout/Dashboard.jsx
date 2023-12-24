@@ -36,7 +36,7 @@ const Dashboard = () => {
             >
               Welcome to the Dashboard
             </Heading>
-            <Button ref={btnRef} colorScheme="red" onClick={onOpen}>
+            <Button  ref={btnRef} colorScheme="blue" onClick={onOpen}>
               Open Dashboard
             </Button>
             <Drawer
@@ -48,7 +48,7 @@ const Dashboard = () => {
               colorScheme="blue"
             >
               <DrawerOverlay />
-              <DrawerContent backgroundColor="red.800" color="white">
+              <DrawerContent backgroundColor="blue.600" color="white">
                 <DrawerCloseButton />
                 <DrawerHeader>Dashboard</DrawerHeader>
 
@@ -166,7 +166,7 @@ const Dashboard = () => {
                 </DrawerBody>
 
                 <DrawerFooter>
-                  <Button colorScheme="red" mr={3} onClick={onClose}>
+                  <Button colorScheme="white" variant="outline" mr={3} onClick={onClose}>
                     Close Dashboard
                   </Button>
                 </DrawerFooter>

@@ -78,15 +78,48 @@ const Allusers = () => {
 
                       <Td className=" flex-col items-center justify-center ">
                         <div>
-                          <Button  onClick={()=>handleMakeAdmin(user)} size="sm" colorScheme="telegram">
-                            Admin
-                          </Button>{" "}
-                          <Button onClick={()=>handleMakeInstructor(user)} size="sm" colorScheme="orange">
-                            Instructor
-                          </Button>
+                          {user.role === "admin" ? (
+                            <Button
+                              isDisabled={true}
+                              size="sm"
+                              colorScheme="telegram"
+                            >
+                              Admin
+                            </Button>
+                          ) : (
+                            <Button
+                              onClick={() => handleMakeAdmin(user)}
+                              size="sm"
+                              colorScheme="telegram"
+                            >
+                              Admin
+                            </Button>
+                          )}{" "}
+                          {user.role === "instructor" ? (
+                            <Button
+                              isDisabled={true}
+                              size="sm"
+                              colorScheme="orange"
+                            >
+                              Instructor
+                            </Button>
+                          ) : (
+                            <Button
+                              onClick={() => handleMakeInstructor(user)}
+                              size="sm"
+                              colorScheme="orange"
+                            >
+                              Instructor
+                            </Button>
+                          )}
                         </div>
+
                         <div className="flex justify-center mt-2">
-                          <Button onClick={()=>handleDeleteUser(user)} size="sm" colorScheme="red">
+                          <Button
+                            onClick={() => handleDeleteUser(user)}
+                            size="sm"
+                            colorScheme="red"
+                          >
                             Delete
                           </Button>
                         </div>
