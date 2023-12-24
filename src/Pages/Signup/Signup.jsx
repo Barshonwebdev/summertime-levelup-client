@@ -43,6 +43,7 @@ const Signup = () => {
             const savedUser = {
               name: loggedinUser.displayName,
               email: loggedinUser.email,
+              propic:imgResponse.data.url,
             };
 
             axios
