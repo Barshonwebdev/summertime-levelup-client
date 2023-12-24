@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../Banner/Banner';
 import kanji from '../../../assets/kanji.jpg'
 import About from '../About/About';
+import InstructorsHome from '../InstructorsHome/InstructorsHome';
 
 const Homepage = () => {
     return (
@@ -17,6 +18,9 @@ const Homepage = () => {
         </div>
         <div className='order-3'>
           <About></About>
+        </div>
+        <div className='order-4'>
+          <InstructorsHome></InstructorsHome>
         </div>
       </div>
     );

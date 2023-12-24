@@ -24,7 +24,7 @@ const useInstructor = () => {
     });
   },[])
 
-  return [isInstructor];
+  return [isInstructor,allInstructors];
 };
 
 export default useInstructor;

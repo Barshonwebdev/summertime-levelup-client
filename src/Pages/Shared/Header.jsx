@@ -45,19 +45,19 @@ const Header = () => {
               <ul className="flex text-red-900 space-x-4 text-xl font-semibold items-center ">
                 <Link
                   to="/"
-                  className="hover:rounded-lg p-2  hover:bg-white hover:text-red-700"
+                  className="hover:rounded-lg p-2  hover:bg-black hover:text-red-700"
                 >
                   Home
                 </Link>
                 <Link
                   to="/classes"
-                  className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
+                  className="hover:rounded-lg p-2 hover:bg-black hover:text-red-700"
                 >
                   Classes
                 </Link>
                 <Link
                   to="/instructors"
-                  className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
+                  className="hover:rounded-lg p-2 hover:bg-black hover:text-red-700"
                 >
                   Instructors
                 </Link>
@@ -66,7 +66,7 @@ const Header = () => {
                   <div className="flex space-x-4 items-center">
                     <Link
                       to="/dashboard"
-                      className="hover:rounded-lg p-2 hover:bg-white hover:text-red-700"
+                      className="hover:rounded-lg p-2 hover:bg-black hover:text-red-700"
                     >
                       Dashboard
                     </Link>
@@ -104,7 +104,7 @@ const Header = () => {
             <img src={logo} alt="" />
           </div>
           <div className="mx-4">
-            <Menu>
+            <Menu autoSelect={false}>
               <MenuButton
                 className="mb-5 bg-white"
                 as={IconButton}
