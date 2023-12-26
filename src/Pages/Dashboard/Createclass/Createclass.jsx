@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import axios from 'axios';
@@ -31,14 +30,16 @@ const Createclass = () => {
           classPhoto:imgResponse.data.url,
           seats:data.seats,
           price:data.price
-        }
+        };
 
-        axios.post(`http://localhost:5000/createclass`,createClassEntry)
-        .then(response=>{
-          console.log(response);
-          reset();
-          Swal.fire('New class created!');
+        axios.post("http://localhost:5000/createclass",createClassEntry)
+        .then(result=>{
+          console.log(result);
         })
+        
+       Swal.fire(`New class created!`);
+        reset();
+      
       })
      };
      console.log(errors);
