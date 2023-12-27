@@ -22,7 +22,7 @@ const InstructorsHome = () => {
     return (
       <div>
         <div className="my-20">
-          <Headline headline="Our Instructors"></Headline>
+          <Headline headline="Popular Instructors"></Headline>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 px-5 md:px-3 gap-y-5 my-5">

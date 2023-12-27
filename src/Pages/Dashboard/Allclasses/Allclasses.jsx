@@ -37,7 +37,7 @@ const Allclasses = () => {
     const {data:allclasses=[],refetch}=useQuery({
         queryKey:'allclasses',
         queryFn: async()=>{
-            const res=await fetch('http://localhost:5000/classes');
+            const res=await fetch('http://localhost:5000/classesquery');
             return res.json();
         }
     });
