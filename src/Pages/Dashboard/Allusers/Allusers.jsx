@@ -12,7 +12,6 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
-import useAdmin from "../../../hooks/useAdmin";
 const Allusers = () => {
     
     const {data: allusers=[], refetch}=useQuery({
@@ -67,7 +66,6 @@ const Allusers = () => {
                 <Thead>
                   <Tr>
                     <Th>Email</Th>
-
                     <Th className="flex justify-center">Action</Th>
                   </Tr>
                 </Thead>

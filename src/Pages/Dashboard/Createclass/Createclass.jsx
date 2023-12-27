@@ -25,11 +25,12 @@ const Createclass = () => {
         console.log(imgResponse);
         const createClassEntry={
           instructorName:user.displayName,
-          instructorEmil:user.email,
+          instructorEmail:user.email,
           className:data.name,
           classPhoto:imgResponse.data.url,
           seats:data.seats,
-          price:data.price
+          price:data.price,
+          status:'Pending',
         };
 
         axios.post("http://localhost:5000/createclass",createClassEntry)
@@ -101,7 +102,7 @@ const Createclass = () => {
 
             <div className="flex justify-center">
               <button
-                className="button bg-orange-600 text-white p-3 rounded"
+                className="button hover:bg-orange-900 bg-orange-600 text-white p-3 rounded"
                 type="submit"
               >
                 Create Classroom
