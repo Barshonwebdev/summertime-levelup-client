@@ -69,7 +69,7 @@ const Allclasses = () => {
         <h2 className="mb-10 text-3xl text-center text-orange-600 italic">
           Manage All Classes
         </h2>
-        <div>
+        <div className='hidden md:block'>
           <Box overflowX="auto">
             <TableContainer>
               <Table overflowX="auto" size={{ base: "sm", md: "md", lg: "md" }}>
@@ -208,6 +208,94 @@ const Allclasses = () => {
             </ModalContent>
           </Modal>
         </div> */}
+
+        {/* mobile view  */}
+        <div className='md:hidden'>
+          <Box overflowX="auto">
+            <TableContainer>
+              <Table overflowX="auto" size="sm">
+                <Thead>
+                  <Tr className="mx-auto">
+                    <Th>Class Name</Th>
+                    <Th>Status</Th>
+                    <Th>Action</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {allclasses.map((eachclass) => (
+                    <Tr key={eachclass._id}>
+                      
+                      <Td className="italic">{eachclass.className}</Td>
+                      {eachclass.status === "Pending" ? (
+                        <Td className="text-orange-600 font-bold">
+                          {eachclass.status}
+                        </Td>
+                      ) : eachclass.status === "Approved" ? (
+                        <Td className="text-green-600 font-bold">
+                          {eachclass.status}
+                        </Td>
+                      ) : (
+                        <Td className="text-red-600 font-bold">
+                          {eachclass.status}
+                        </Td>
+                      )}
+                      <Td className="space-y-2 flex flex-col items-center">
+                        {eachclass.status === "Pending" ? (
+                          <div className="space-y-2">
+                            <div>
+                              <Button
+                                onClick={() => handleApprove(eachclass)}
+                                size="sm"
+                                colorScheme="green"
+                              >
+                                Approve
+                              </Button>
+                            </div>
+                            <div>
+                              <Button
+                                onClick={() => handleDeny(eachclass)}
+                                size="sm"
+                                colorScheme="red"
+                              >
+                                Deny
+                              </Button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="space-y-2">
+                            <div>
+                              <Button
+                                isDisabled={true}
+                                size="sm"
+                                colorScheme="green"
+                              >
+                                Approve
+                              </Button>
+                            </div>
+                            <div>
+                              <Button
+                                isDisabled={true}
+                                size="sm"
+                                colorScheme="red"
+                              >
+                                Deny
+                              </Button>
+                            </div>
+                          </div>
+                        )}
+                        {/* <div>
+                          <Button onClick={onOpen} size="sm" colorScheme="blue">
+                            Feedback
+                          </Button>
+                        </div> */}
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </Box>
+        </div>
       </div>
     );
 };
