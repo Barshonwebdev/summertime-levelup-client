@@ -71,7 +71,7 @@ const Header = () => {
                       Dashboard
                     </Link>
                     <div className="flex space-x-2 items-center">
-                      <img className="w-7" src={user.photoURL} alt="" />
+                      <img className="w-6" src={user.photoURL} alt="" />
                       <button
                         onClick={handleLogout}
                         className="text-sm mr-10  rounded-lg p-2 bg-white text-red-800 hover:bg-black hover:text-red-600 "

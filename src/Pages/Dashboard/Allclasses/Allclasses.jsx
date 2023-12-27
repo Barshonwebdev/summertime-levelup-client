@@ -11,6 +11,8 @@ import {
   Button,
   Box,
 } from "@chakra-ui/react";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 const Allclasses = () => {
     const {data:allclasses=[],refetch}=useQuery({
         queryKey:'allclasses',
@@ -21,6 +23,27 @@ const Allclasses = () => {
     });
 
     console.log(allclasses);
+
+    const handleApprove=(eachclass)=>{
+        axios.patch(`http://localhost:5000/createclass/approved/${eachclass._id}`)
+        .then(response=>{
+            console.log(response.data);
+            if(response.data.modifiedCount>0){
+                refetch();
+                Swal.fire(`${eachclass.className} has been approved!`)
+            }
+        })
+    }
+    const handleDeny=(eachclass)=>{
+        axios.patch(`http://localhost:5000/createclass/denied/${eachclass._id}`)
+        .then(response=>{
+            console.log(response.data);
+            if(response.data.modifiedCount>0){
+                refetch();
+                Swal.fire(`${eachclass.className} has been denied, sorry!`)
+            }
+        })
+    }
     return (
       <div>
         <h2 className="mb-10 text-3xl text-center text-orange-600 italic">
@@ -31,7 +54,7 @@ const Allclasses = () => {
             <TableContainer>
               <Table overflowX="auto" size={{ base: "sm", md: "md", lg: "md" }}>
                 <Thead>
-                  <Tr className='mx-auto'>
+                  <Tr className="mx-auto">
                     <Th>Image</Th>
                     <Th>Class Name</Th>
                     <Th>Instructor</Th>
@@ -52,25 +75,76 @@ const Allclasses = () => {
                           alt=""
                         />
                       </Td>
-                      <Td className='italic'>{eachclass.className}</Td>
-                      <Td className='text-blue-600'>{eachclass.instructorName}</Td>
-                      <Td className='text-blue-600'>{eachclass.instructorEmail}</Td>
-                      <Td className='text-red-600'>{eachclass.seats}(remaining)</Td>
-                      <Td className='text-green-600'>$ {eachclass.price}</Td>
-                      <Td className='text-orange-600'>{eachclass.status}</Td>
-                      <Td className='space-y-2 flex flex-col items-center'>
+                      <Td className="italic">{eachclass.className}</Td>
+                      <Td className="text-blue-600">
+                        {eachclass.instructorName}
+                      </Td>
+                      <Td className="text-blue-600">
+                        {eachclass.instructorEmail}
+                      </Td>
+                      <Td className="text-red-600">
+                        {eachclass.seats}(remaining)
+                      </Td>
+                      <Td className="text-green-600 font-bold">
+                        $ {eachclass.price}
+                      </Td>
+                      {eachclass.status === "Pending" ? (
+                        <Td className="text-orange-600 font-bold">
+                          {eachclass.status}
+                        </Td>
+                      ) : eachclass.status === "Approved" ? (
+                        <Td className="text-green-600">{eachclass.status}</Td>
+                      ) : (
+                        <Td className="text-red-600 font-bold">
+                          {eachclass.status}
+                        </Td>
+                      )}
+                      <Td className="space-y-2 flex flex-col items-center">
+                        {eachclass.status === "Pending" ? (
+                          <div className="space-y-2">
+                            <div>
+                              <Button
+                                onClick={() => handleApprove(eachclass)}
+                                size="sm"
+                                colorScheme="green"
+                              >
+                                Approve
+                              </Button>
+                            </div>
+                            <div>
+                              <Button
+                                onClick={() => handleDeny(eachclass)}
+                                size="sm"
+                                colorScheme="red"
+                              >
+                                Deny
+                              </Button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="space-y-2">
+                            <div>
+                              <Button
+                                isDisabled={true}
+                                size="sm"
+                                colorScheme="green"
+                              >
+                                Approve
+                              </Button>
+                            </div>
+                            <div>
+                              <Button
+                                isDisabled={true}
+                                size="sm"
+                                colorScheme="red"
+                              >
+                                Deny
+                              </Button>
+                            </div>
+                          </div>
+                        )}
                         <div>
-                          <Button size="sm" colorScheme="green">
-                            Approve
-                          </Button>
-                        </div>
-                        <div>
-                          <Button size="sm" colorScheme="red">
-                            Deny
-                          </Button>
-                        </div>
-                        <div>
-                          <Button  size="sm" colorScheme="blue">
+                          <Button size="sm" colorScheme="blue">
                             Feedback
                           </Button>
                         </div>
