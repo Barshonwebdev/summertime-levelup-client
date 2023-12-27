@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import {
   Table,
   Thead,
@@ -10,10 +9,31 @@ import {
   TableContainer,
   Button,
   Box,
+  useDisclosure,
+} from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
 const Allclasses = () => {
+    const {
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors },
+    } = useForm();
+     const { isOpen, onOpen, onClose } = useDisclosure();
+     const onSubmit=(data)=>{
+        console.log(data);
+     }
     const {data:allclasses=[],refetch}=useQuery({
         queryKey:'allclasses',
         queryFn: async()=>{
@@ -85,15 +105,15 @@ const Allclasses = () => {
                       <Td className="text-red-600">
                         {eachclass.seats}(remaining)
                       </Td>
-                      <Td className="text-green-600">
-                        $ {eachclass.price}
-                      </Td>
+                      <Td className="text-green-600">$ {eachclass.price}</Td>
                       {eachclass.status === "Pending" ? (
                         <Td className="text-orange-600 font-bold">
                           {eachclass.status}
                         </Td>
                       ) : eachclass.status === "Approved" ? (
-                        <Td className="text-green-600 font-bold">{eachclass.status}</Td>
+                        <Td className="text-green-600 font-bold">
+                          {eachclass.status}
+                        </Td>
                       ) : (
                         <Td className="text-red-600 font-bold">
                           {eachclass.status}
@@ -143,11 +163,11 @@ const Allclasses = () => {
                             </div>
                           </div>
                         )}
-                        <div>
-                          <Button size="sm" colorScheme="blue">
+                        {/* <div>
+                          <Button onClick={onOpen} size="sm" colorScheme="blue">
                             Feedback
                           </Button>
-                        </div>
+                        </div> */}
                       </Td>
                     </Tr>
                   ))}
@@ -156,6 +176,38 @@ const Allclasses = () => {
             </TableContainer>
           </Box>
         </div>
+        {/* <div>
+          <Modal
+            isOpen={isOpen}
+            onClose={onClose}
+          >
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Feedback Form</ModalHeader>
+              <ModalHeader>{}</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody pb={6}>
+                <form className='space-y-4' onSubmit={handleSubmit(onSubmit)}>
+                  <div>
+                    <label> </label>
+                    <textarea
+                      className='w-full'
+                      placeholder="Your feedback"
+                      {...register("feedback",)}
+                    />
+                  </div>
+                  <div>
+                    <Button colorScheme='twitter'>
+                        Submit Feedback
+                    </Button>
+                  </div>
+                </form>
+              </ModalBody>
+
+             
+            </ModalContent>
+          </Modal>
+        </div> */}
       </div>
     );
 };
