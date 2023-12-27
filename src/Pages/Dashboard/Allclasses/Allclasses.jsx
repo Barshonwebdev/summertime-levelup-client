@@ -25,7 +25,7 @@ const Allclasses = () => {
     console.log(allclasses);
 
     const handleApprove=(eachclass)=>{
-        axios.patch(`http://localhost:5000/createclass/approved/${eachclass._id}`)
+        axios.patch(`http://localhost:5000/classses/approved/${eachclass._id}`)
         .then(response=>{
             console.log(response.data);
             if(response.data.modifiedCount>0){
@@ -35,7 +35,7 @@ const Allclasses = () => {
         })
     }
     const handleDeny=(eachclass)=>{
-        axios.patch(`http://localhost:5000/createclass/denied/${eachclass._id}`)
+        axios.patch(`http://localhost:5000/classes/denied/${eachclass._id}`)
         .then(response=>{
             console.log(response.data);
             if(response.data.modifiedCount>0){
@@ -85,7 +85,7 @@ const Allclasses = () => {
                       <Td className="text-red-600">
                         {eachclass.seats}(remaining)
                       </Td>
-                      <Td className="text-green-600 font-bold">
+                      <Td className="text-green-600">
                         $ {eachclass.price}
                       </Td>
                       {eachclass.status === "Pending" ? (
@@ -93,7 +93,7 @@ const Allclasses = () => {
                           {eachclass.status}
                         </Td>
                       ) : eachclass.status === "Approved" ? (
-                        <Td className="text-green-600">{eachclass.status}</Td>
+                        <Td className="text-green-600 font-bold">{eachclass.status}</Td>
                       ) : (
                         <Td className="text-red-600 font-bold">
                           {eachclass.status}
