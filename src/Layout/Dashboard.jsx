@@ -56,15 +56,7 @@ const Dashboard = () => {
                   <div className="mt-5 flex flex-col space-y-5">
                     {isAdmin ? (
                       <>
-                        <Button onClick={onClose}>
-                          <Link
-                            to="/dashboard/adminhome"
-                            className="flex items-center"
-                          >
-                            <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
-                            Admin Home
-                          </Link>
-                        </Button>
+                        
 
                         <Button onClick={onClose}>
                           <Link
@@ -72,7 +64,7 @@ const Dashboard = () => {
                             className="flex items-center"
                           >
                             <FaUsersBetweenLines className="mr-1 text-xl text-yellow-700"></FaUsersBetweenLines>
-                            Manage Classes
+                            Manage All Classes
                           </Link>
                         </Button>
 
@@ -88,16 +80,7 @@ const Dashboard = () => {
                       </>
                     ) : isInstructor ? (
                       <>
-                        <Button onClick={onClose}>
-                          <Link
-                            to="/dashboard/instructorhome"
-                            className="flex items-center"
-                          >
-                            {" "}
-                            <FaHome className="mr-1 text-xl text-blue-700"></FaHome>
-                            Instructor Home
-                          </Link>
-                        </Button>
+                       
 
                         <Button onClick={onClose}>
                           <Link
@@ -121,15 +104,7 @@ const Dashboard = () => {
                       </>
                     ) : (
                       <>
-                        <Button onClick={onClose}>
-                          <Link
-                            to="/dashboard/userhome"
-                            className="flex items-center"
-                          >
-                            <FaHome className="mr-1 text-xl text-blue-700"></FaHome>{" "}
-                            User Home
-                          </Link>
-                        </Button>
+                        
 
                         <Button onClick={onClose}>
                           <Link

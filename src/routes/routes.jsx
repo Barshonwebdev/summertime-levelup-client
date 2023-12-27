@@ -68,14 +68,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      {
-        path: "adminhome",
-        element: (
-          <AdminRoute>
-            <AdminHome></AdminHome>
-          </AdminRoute>
-        ),
-      },
+      
       {
         path: "allclasses",
         element: (
@@ -84,14 +77,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      {
-        path: "instructorhome",
-        element: (
-          <InstructorRoute>
-            <InstructorHome></InstructorHome>
-          </InstructorRoute>
-        ),
-      },
+     
       {
         path: "createclass",
         element: (
@@ -108,12 +94,7 @@ const router = createBrowserRouter([
           </InstructorRoute>
         ),
       },
-      {
-        path: "userhome",
-        element: (
-          <Userhome></Userhome>
-        ),
-      },
+     
       {
         path: "paymenthistory",
         element: (
