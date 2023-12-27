@@ -69,7 +69,7 @@ const Allclasses = () => {
         <h2 className="mb-10 text-3xl text-center text-orange-600 italic">
           Manage All Classes
         </h2>
-        <div className='hidden md:block'>
+        <div className="hidden md:block">
           <Box overflowX="auto">
             <TableContainer>
               <Table overflowX="auto" size={{ base: "sm", md: "md", lg: "md" }}>
@@ -121,7 +121,7 @@ const Allclasses = () => {
                       )}
                       <Td className="space-y-2 flex flex-col items-center">
                         {eachclass.status === "Pending" ? (
-                          <div className="space-y-2">
+                          <div className="space-y-2 flex flex-col justify-center items-center">
                             <div>
                               <Button
                                 onClick={() => handleApprove(eachclass)}
@@ -210,7 +210,7 @@ const Allclasses = () => {
         </div> */}
 
         {/* mobile view  */}
-        <div className='md:hidden'>
+        <div className="md:hidden">
           <Box overflowX="auto">
             <TableContainer>
               <Table overflowX="auto" size="sm">
@@ -224,7 +224,6 @@ const Allclasses = () => {
                 <Tbody>
                   {allclasses.map((eachclass) => (
                     <Tr key={eachclass._id}>
-                      
                       <Td className="italic">{eachclass.className}</Td>
                       {eachclass.status === "Pending" ? (
                         <Td className="text-orange-600 font-bold">
@@ -241,7 +240,7 @@ const Allclasses = () => {
                       )}
                       <Td className="space-y-2 flex flex-col items-center">
                         {eachclass.status === "Pending" ? (
-                          <div className="space-y-2">
+                          <div className="space-y-2 flex flex-col justify-center items-center ">
                             <div>
                               <Button
                                 onClick={() => handleApprove(eachclass)}
