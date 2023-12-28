@@ -11,9 +11,12 @@ import {
   Button,
   Box,
 } from "@chakra-ui/react";
+
 import { FaRegEdit } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Myclasses = () => {
+   
     const {user}=useAuth();
     const {data:myclasses=[], refetch}=useQuery({
         queryKey:'myclasses',
@@ -61,7 +64,7 @@ const Myclasses = () => {
                       <Td className="text-red-600">
                         {eachclass.seats}(remaining)
                       </Td>
-                      <Td className="text-green-600 ">{eachclass.enrolled}</Td>
+                      <Td className="text-orange-600 ">{eachclass.enrolled}</Td>
                       <Td className="text-green-600">$ {eachclass.price}</Td>
                       {eachclass.status === "Pending" ? (
                         <Td className="text-orange-600 font-bold">
@@ -77,9 +80,11 @@ const Myclasses = () => {
                         </Td>
                       )}
                       <Td className="">
-                        <Button colorScheme="orange">
-                          <FaRegEdit></FaRegEdit>
-                        </Button>
+                        <Link to="/dashboard/updateclass">
+                          <Button colorScheme="orange">
+                            <FaRegEdit></FaRegEdit>
+                          </Button>
+                        </Link>
                       </Td>
                     </Tr>
                   ))}
@@ -88,38 +93,6 @@ const Myclasses = () => {
             </TableContainer>
           </Box>
         </div>
-        {/* <div>
-          <Modal
-            isOpen={isOpen}
-            onClose={onClose}
-          >
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Feedback Form</ModalHeader>
-              <ModalHeader>{}</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody pb={6}>
-                <form className='space-y-4' onSubmit={handleSubmit(onSubmit)}>
-                  <div>
-                    <label> </label>
-                    <textarea
-                      className='w-full'
-                      placeholder="Your feedback"
-                      {...register("feedback",)}
-                    />
-                  </div>
-                  <div>
-                    <Button colorScheme='twitter'>
-                        Submit Feedback
-                    </Button>
-                  </div>
-                </form>
-              </ModalBody>
-
-             
-            </ModalContent>
-          </Modal>
-        </div> */}
 
         {/* mobile view  */}
         <div className="md:hidden">
@@ -151,9 +124,11 @@ const Myclasses = () => {
                         </Td>
                       )}
                       <Td className="">
-                        <Button colorScheme="orange">
-                          <FaRegEdit></FaRegEdit>
-                        </Button>
+                        <Link to="/dashboard/updateclass">
+                          <Button colorScheme="orange">
+                            <FaRegEdit></FaRegEdit>
+                          </Button>
+                        </Link>
                       </Td>
                     </Tr>
                   ))}

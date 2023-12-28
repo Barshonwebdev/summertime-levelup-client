@@ -21,6 +21,7 @@ import Userhome from "../Pages/Dashboard/Homepage/Userhome";
 import Paymenthistory from "../Pages/Dashboard/Paymenthistory/Paymenthistory";
 import Selectedclasses from "../Pages/Dashboard/Selectedclasses/Selectedclasses";
 import Enrolledclasses from "../Pages/Dashboard/Enrolledclasses/Enrolledclasses";
+import UpdateClass from "../Pages/Dashboard/UpdateClass/UpdateClass";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -91,6 +92,14 @@ const router = createBrowserRouter([
         element: (
           <InstructorRoute>
             <Myclasses></Myclasses>
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "updateclass",
+        element: (
+          <InstructorRoute>
+            <UpdateClass></UpdateClass>
           </InstructorRoute>
         ),
       },
