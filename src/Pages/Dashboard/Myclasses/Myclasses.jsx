@@ -80,7 +80,7 @@ const Myclasses = () => {
                         </Td>
                       )}
                       <Td className="">
-                        <Link to="/dashboard/updateclass">
+                        <Link to={`/dashboard/updateclass/${eachclass._id}`}>
                           <Button colorScheme="orange">
                             <FaRegEdit></FaRegEdit>
                           </Button>
@@ -124,7 +124,7 @@ const Myclasses = () => {
                         </Td>
                       )}
                       <Td className="">
-                        <Link to="/dashboard/updateclass">
+                        <Link to={`/dashboard/updateclass/${eachclass._id}`}>
                           <Button colorScheme="orange">
                             <FaRegEdit></FaRegEdit>
                           </Button>

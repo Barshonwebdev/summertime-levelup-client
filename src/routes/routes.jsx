@@ -69,7 +69,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      
+
       {
         path: "allclasses",
         element: (
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-     
+
       {
         path: "createclass",
         element: (
@@ -96,31 +96,28 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "updateclass",
+        path: "updateclass/:id",
         element: (
           <InstructorRoute>
             <UpdateClass></UpdateClass>
           </InstructorRoute>
         ),
+        loader: ({ params }) => 
+          fetch(`http://localhost:5000/updateclass/${params.id}`),
+        
       },
-     
+
       {
         path: "paymenthistory",
-        element: (
-          <Paymenthistory></Paymenthistory>
-        ),
+        element: <Paymenthistory></Paymenthistory>,
       },
       {
         path: "selected",
-        element: (
-          <Selectedclasses></Selectedclasses>
-        ),
+        element: <Selectedclasses></Selectedclasses>,
       },
       {
         path: "enrolled",
-        element: (
-          <Enrolledclasses></Enrolledclasses>
-        ),
+        element: <Enrolledclasses></Enrolledclasses>,
       },
     ],
   },
