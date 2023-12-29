@@ -1,6 +1,8 @@
 import React from 'react';
 import useAllClasses from '../../hooks/useAllClasses';
 import Headline from '../../components/Headline';
+import { FaBasketShopping } from "react-icons/fa6";
+
 import {
   Card,
   CardHeader,
@@ -16,22 +18,37 @@ import {
 } from "@chakra-ui/react";
 import useAdmin from '../../hooks/useAdmin';
 import useInstructor from '../../hooks/useInstructor';
+import useSelected from '../../hooks/useSelected';
+import { Link } from 'react-router-dom';
 const Classes = () => {
     
     const [isAdmin]=useAdmin();
     const [isInstructor]=useInstructor();
     const [allClasses]=useAllClasses();
     console.log(allClasses);
+    const [,refetch]=useSelected();
+    const handleSelectclass=()=>{
+
+    }
     return (
       <div>
         <div className="my-20">
           <Headline headline={"All Our Classes "}></Headline>
         </div>
 
+        <Link to="/dashboard/selected">
+          <div className="rounded-lg fixed bg-black p-3 top-36 right-0 z-10 ">
+            <div className='flex items-center space-x-2'>
+              <FaBasketShopping className="text-white"></FaBasketShopping>
+              <span className='text-white'>+0</span>
+            </div>
+          </div>
+        </Link>
+
         <div className="grid grid-cols-1 md:grid-cols-3 px-5 md:px-3 gap-y-5 gap-x-4 my-5">
           {allClasses.map((eachclass) => (
             <div key={eachclass._id}>
-              <Card className="hover:animate-pulse  " height="100%" maxW="sm">
+              <Card className="  " height="100%" maxW="sm">
                 <CardBody>
                   <Image
                     className=""
@@ -68,7 +85,13 @@ const Classes = () => {
                             Select
                           </Button>
                         ) : (
-                          <Button isDisabled={false} colorScheme="linkedin">
+                          <Button
+                            onClick={handleSelectclass()}
+                            isDisabled={false}
+                            color={"white"}
+                            bg={"cyan.500"}
+                            _hover={{ bg: "orange.300", color: "black" }}
+                          >
                             Select
                           </Button>
                         )}
