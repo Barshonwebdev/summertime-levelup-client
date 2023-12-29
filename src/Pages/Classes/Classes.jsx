@@ -19,16 +19,59 @@ import {
 import useAdmin from '../../hooks/useAdmin';
 import useInstructor from '../../hooks/useInstructor';
 import useSelected from '../../hooks/useSelected';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 const Classes = () => {
-    
+    const {user}=useAuth();
     const [isAdmin]=useAdmin();
     const [isInstructor]=useInstructor();
     const [allClasses]=useAllClasses();
     console.log(allClasses);
     const [,refetch]=useSelected();
-    const handleSelectclass=()=>{
+    const navigate=useNavigate();
+    const location=useLocation();
+    const handleSelectclass=(eachclass)=>{
+        if (user && user.email){
+            const {_id,className,classPhoto,price,seats,instructorName}=eachclass;
+            const selectedclass={classId:_id, email:user.email,className,classPhoto,price,seats,instructorName};
+            fetch(`http://localhost:5000/selectedclasses`, {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(selectedclass),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  refetch();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Selected Class!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                }
+              });
 
+        }
+        else {
+          Swal.fire({
+            title: "Please Log in first",
+
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Login",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate("/signin", { state: { from: location } });
+            }
+          });
+        }
     }
     return (
       <div>
@@ -86,7 +129,7 @@ const Classes = () => {
                           </Button>
                         ) : (
                           <Button
-                            onClick={handleSelectclass()}
+                            onClick={()=>handleSelectclass(eachclass)}
                             isDisabled={false}
                             color={"white"}
                             bg={"cyan.500"}

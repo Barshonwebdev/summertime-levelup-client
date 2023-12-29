@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import useAuth from "./useAuth";
 
 const useSelected = () => {
+    const {user}=useAuth();
     const {data:selectedClasses=[],refetch}=useQuery({
-        queryKey:['selectedClasses'],
+        queryKey:['selectedClasses',user?.email],
         queryFn:async()=>{
-            const res= await fetch(`http://localhost:5000/selectedclasses`);
+            const res= await fetch(`http://localhost:5000/selectedclasses?email=${user?.email}`);
             return res.json();
         }
     })
