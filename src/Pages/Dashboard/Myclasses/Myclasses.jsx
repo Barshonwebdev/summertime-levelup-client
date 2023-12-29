@@ -14,20 +14,19 @@ import {
 
 import { FaRegEdit } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Myclasses = () => {
    
     const {user}=useAuth();
-    const {data:myclasses=[], refetch}=useQuery({
-        queryKey:'myclasses',
-        queryFn:async()=>{
-            const res = await fetch(
-              `http://localhost:5000/myclasses?email=${user.email}`
-            );
-            return res.json();
-        }
-    })
-
+    const [myclasses,setMyClasses]=useState([]);
+    useEffect(()=>{
+      fetch(`http://localhost:5000/myclasses?email=${user?.email}`)
+      .then(res=>res.json())
+      .then(data=>{
+        setMyClasses(data);
+      })
+    },[])
     console.log(myclasses);
     return (
       <div>
