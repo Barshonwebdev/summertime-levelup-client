@@ -64,6 +64,16 @@ const Allclasses = () => {
             }
         })
     }
+    const handleDelete=(eachclass)=>{
+        axios.delete(`http://localhost:5000/classesquery/${eachclass._id}`)
+        .then(response=>{
+            console.log(response.data);
+            if(response.data.deletedCount>0){
+                refetch();
+                Swal.fire(`${eachclass.className} has been deleted!`)
+            }
+        })
+    }
     return (
       <div>
         <h2 className="mb-10 text-3xl text-center text-orange-600 italic">
@@ -83,6 +93,7 @@ const Allclasses = () => {
                     <Th>Price</Th>
                     <Th>Status</Th>
                     <Th>Action</Th>
+                    <Th>Delete</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -168,6 +179,13 @@ const Allclasses = () => {
                             Feedback
                           </Button>
                         </div> */}
+                      </Td>
+                      <Td>
+                        <div>
+                          <Button onClick={()=>handleDelete(eachclass)} size="sm" colorScheme="red">
+                            Delete
+                          </Button>
+                        </div>
                       </Td>
                     </Tr>
                   ))}
