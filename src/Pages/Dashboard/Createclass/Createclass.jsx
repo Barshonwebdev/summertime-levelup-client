@@ -29,7 +29,7 @@ const Createclass = () => {
           className:data.name,
           classPhoto:imgResponse.data.url,
           seats:data.seats,
-          price:data.price,
+          price: parseFloat(data.price),
           status:'Pending',
         };
 

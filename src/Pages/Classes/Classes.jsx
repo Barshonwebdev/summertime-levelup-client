@@ -91,7 +91,7 @@ const Classes = () => {
         {!isAdmin && !isInstructor && (
           <Link to="/dashboard/selected">
             <div className="rounded-lg fixed bg-black p-3 top-36 right-0 z-10 ">
-              <p className='text-white text-sm'>Selected:</p>
+              <p className="text-white text-sm">Selected:</p>
               <div className="flex items-center space-x-2">
                 <FaBasketShopping className="text-white text-xl"></FaBasketShopping>
                 <span className="text-white">+{selectedClasses.length}</span>
@@ -105,6 +105,7 @@ const Classes = () => {
             <div key={eachclass._id}>
               <Card className="  " height="100%" maxW="sm">
                 <CardBody>
+                 
                   <Image
                     className=""
                     align={""}
@@ -158,6 +159,7 @@ const Classes = () => {
             </div>
           ))}
         </div>
+        
       </div>
     );
 };
