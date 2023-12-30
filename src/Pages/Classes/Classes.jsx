@@ -28,7 +28,7 @@ const Classes = () => {
     const [isInstructor]=useInstructor();
     const [allClasses]=useAllClasses();
     console.log(allClasses);
-    const [,refetch]=useSelected();
+    const [selectedClasses,refetch]=useSelected();
     const navigate=useNavigate();
     const location=useLocation();
     const handleSelectclass=(eachclass)=>{
@@ -79,14 +79,17 @@ const Classes = () => {
           <Headline headline={"All Our Classes "}></Headline>
         </div>
 
-        <Link to="/dashboard/selected">
-          <div className="rounded-lg fixed bg-black p-3 top-36 right-0 z-10 ">
-            <div className='flex items-center space-x-2'>
-              <FaBasketShopping className="text-white"></FaBasketShopping>
-              <span className='text-white'>+0</span>
+        {!isAdmin && !isInstructor && (
+          <Link to="/dashboard/selected">
+            <div className="rounded-lg fixed bg-black p-3 top-36 right-0 z-10 ">
+              <p className='text-white text-sm'>Selected:</p>
+              <div className="flex items-center space-x-2">
+                <FaBasketShopping className="text-white text-xl"></FaBasketShopping>
+                <span className="text-white">+{selectedClasses.length}</span>
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 px-5 md:px-3 gap-y-5 gap-x-4 my-5">
           {allClasses.map((eachclass) => (
@@ -129,7 +132,7 @@ const Classes = () => {
                           </Button>
                         ) : (
                           <Button
-                            onClick={()=>handleSelectclass(eachclass)}
+                            onClick={() => handleSelectclass(eachclass)}
                             isDisabled={false}
                             color={"white"}
                             bg={"cyan.500"}
