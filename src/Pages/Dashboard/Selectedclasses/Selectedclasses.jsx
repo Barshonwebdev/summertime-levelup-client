@@ -23,9 +23,13 @@ const Selectedclasses = () => {
                     src={eachclass.classPhoto}
                     borderRadius="lg"
                   />
+                 
                 </CardBody>
                 <CardFooter>
                   <Stack mt="6" spacing="3">
+                    <Heading className="italic text-orange-600 " size="lg">
+                      $ {eachclass.price}
+                    </Heading>
                     <Heading className="italic text-zinc-500" size="md">
                       {eachclass.className}
                     </Heading>
@@ -40,12 +44,7 @@ const Selectedclasses = () => {
                             {eachclass.seats}
                           </span>
                         </p>
-                        <p className=" font-semibold">
-                          Price:{" "}
-                          <span className="text-green-600">
-                            ${eachclass.price}
-                          </span>
-                        </p>
+                        
                       </div>
                     </Text>
                   </Stack>

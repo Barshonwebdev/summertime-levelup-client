@@ -54,6 +54,15 @@ const Classes = () => {
                     timer: 1500,
                   });
                 }
+                else {
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "warning",
+                    title: "Class already added once!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                }
               });
 
         }
