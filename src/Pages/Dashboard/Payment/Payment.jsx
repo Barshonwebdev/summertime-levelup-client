@@ -1,4 +1,7 @@
+import { loadStripe } from "@stripe/stripe-js";
 import useSelected from "../../../hooks/useSelected";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 
 const Payment = () => {
      const [selectedClasses] = useSelected();
@@ -6,6 +9,8 @@ const Payment = () => {
        (sum, item) => item.price + sum,
        0
      );
+
+     const stripePromise=loadStripe(import.meta.env.VITE_STRIPE_PK);
     return (
       <div>
         <p className="text-center text-3xl text-orange-600 italic my-3">Payment</p>
@@ -22,6 +27,11 @@ const Payment = () => {
               ${parseFloat(totalPrice.toFixed(2))}
             </span>{" "}
           </h3>
+        </div>
+        <div className="my-10">
+          <Elements stripe={stripePromise}>
+            <CheckoutForm></CheckoutForm>
+          </Elements>
         </div>
       </div>
     );
