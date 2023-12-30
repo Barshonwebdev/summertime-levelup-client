@@ -130,6 +130,12 @@ const Classes = () => {
                           </span>
                         </p>
                         <p className=" font-semibold">
+                          Enrolled:{" "}
+                          <span className="text-blue-600">
+                            {eachclass.enrolled}
+                          </span>
+                        </p>
+                        <p className=" font-semibold">
                           Price:{" "}
                           <span className="text-green-600">
                             ${eachclass.price}

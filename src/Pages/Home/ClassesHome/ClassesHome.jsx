@@ -38,6 +38,7 @@ console.log(homepageClasses);
                     <div className="">
                       <p className="text-violet-900 font-semibold text-lg">Instructor: {eachclass.instructorName}</p>
                       <p className="text-red-600 font-semibold">Seats Remaining: {eachclass.seats}</p>
+                      <p className="text-blue-600 font-semibold">Enrolled: {eachclass.enrolled}</p>
                      
                     </div>
                   </Text>
