@@ -58,7 +58,7 @@ const Classes = () => {
                   Swal.fire({
                     position: "top-end",
                     icon: "warning",
-                    title: "Class already added once!",
+                    title: "Class already selected once!",
                     showConfirmButton: false,
                     timer: 1500,
                   });
