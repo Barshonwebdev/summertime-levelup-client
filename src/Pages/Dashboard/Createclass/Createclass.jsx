@@ -23,14 +23,15 @@ const Createclass = () => {
       .then(res=>res.json())
       .then(imgResponse=>{
         console.log(imgResponse);
-        const createClassEntry={
-          instructorName:user.displayName,
-          instructorEmail:user.email,
-          className:data.name,
-          classPhoto:imgResponse.data.url,
-          seats:data.seats,
+        const createClassEntry = {
+          instructorName: user.displayName,
+          instructorEmail: user.email,
+          className: data.name,
+          classPhoto: imgResponse.data.url,
+          seats: parseFloat(data.seats),
           price: parseFloat(data.price),
-          status:'Pending',
+          status: "Pending",
+          enrolled: parseFloat(0),
         };
 
         axios.post("http://localhost:5000/createclass",createClassEntry)

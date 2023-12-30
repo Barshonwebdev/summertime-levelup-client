@@ -88,7 +88,7 @@ const Selectedclasses = () => {
             </span>{" "}
           </h3>
           <h3>
-            Total Price: <span className='text-green-700 text-2xl'>$ {parseFloat(totalPrice.toFixed(2))}</span>{" "}
+            Total Price: <span className='text-green-700 text-2xl'>${parseFloat(totalPrice.toFixed(2))}</span>{" "}
           </h3>
         </div>
         <div className="my-5">
