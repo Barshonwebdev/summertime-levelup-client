@@ -1,7 +1,9 @@
 import { Button } from "@chakra-ui/react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useState } from "react";
 
 const CheckoutForm = () => {
+    const [cardError,setCardError]=useState('');
     const stripe=useStripe();
     const elements=useElements();
 
@@ -16,12 +18,28 @@ const CheckoutForm = () => {
          if (card === null) {
            return;
          }
+
+         const {error,paymentMethod}=await stripe.createPaymentMethod({
+            type:'card',
+            card,
+         });
+
+         if(error){
+            console.log(error);
+            setCardError(error.message);
+         }
+
+         else{
+            console.log('payment method', paymentMethod);
+            setCardError('');
+         }
     }
     
     return (
       <div className="">
         <form className="" onSubmit={handleSubmit}>
           <CardElement
+            className=" w-96"
             options={{
               style: {
                 base: {
@@ -47,6 +65,7 @@ const CheckoutForm = () => {
               Pay
             </Button>
           </div>
+          <p className="text-red-600 mt-2 text-center">{cardError}</p>
         </form>
       </div>
     );
