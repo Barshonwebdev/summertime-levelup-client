@@ -2,17 +2,17 @@ import { Button } from "@chakra-ui/react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({totalPrice}) => {
     const [cardError,setCardError]=useState('');
     const stripe=useStripe();
     const elements=useElements();
-
+    console.log(totalPrice);
     const handleSubmit=async(event)=>{
         event.preventDefault();
         if (!stripe || !elements) {
           return;
         }
-
+        
          const card = elements.getElement(CardElement);
 
          if (card === null) {
