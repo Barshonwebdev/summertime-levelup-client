@@ -12,6 +12,8 @@ const CheckoutForm = ({totalPrice}) => {
     console.log(totalPrice);
     const [cardError, setCardError] = useState("");
     const [clientSecret, setClientSecret] = useState("");
+    const [transactionId, setTransactionId] = useState("");
+    const [processing, setProcessing] = useState(false);
     useEffect(()=>{
       axios.post(`http://localhost:5000/paymentIntent`,{totalPrice})
       .then(res=>{
@@ -46,6 +48,7 @@ const CheckoutForm = ({totalPrice}) => {
             setCardError('');
          }
 
+         setProcessing(true);
          const { paymentIntent, error:confirmError } = await stripe.confirmCardPayment(
            clientSecret,
            {
@@ -66,9 +69,12 @@ const CheckoutForm = ({totalPrice}) => {
 
      
       console.log(paymentIntent)
-      
+      if(paymentIntent.status==='succeeded'){
+        setTransactionId(paymentIntent.id);
+        console.log(transactionId);
+      }
         
-         
+      setProcessing(false);
     }
     
     return (
@@ -96,12 +102,15 @@ const CheckoutForm = ({totalPrice}) => {
               className="mt-4"
               colorScheme="green"
               type="submit"
-              disabled={!stripe || !clientSecret}
+              disabled={!stripe || !clientSecret || processing}
             >
               Pay
             </Button>
           </div>
-          <p className="text-red-600 mt-2 text-center">{cardError}</p>
+          {cardError && (
+            <p className="text-red-600 mt-2 text-center">{cardError}</p>
+          )}
+          {transactionId && <p className="text-green-600 mt-2 text-center">Payment Successful. ID: {transactionId}</p>}
         </form>
       </div>
     );
