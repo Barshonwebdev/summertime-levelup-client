@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useSelected from '../../../hooks/useSelected';
 import { Button, Card, CardBody, CardFooter, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 
 const Selectedclasses = () => {
     const [selectedClasses,refetch]=useSelected();
-    
     const totalPrice=selectedClasses.reduce((sum,item)=>item.price+sum,0);
     console.log(totalPrice);
     console.log(selectedClasses);
@@ -100,7 +99,7 @@ const Selectedclasses = () => {
         </div>
         <div className="my-5">
           <Link to="/dashboard/payment">
-            <Button colorScheme="green">Proceed to Pay</Button>
+            <Button isDisabled={selectedClasses.length===0} colorScheme="green">Proceed to Pay</Button>
           </Link>
         </div>
         <div>
