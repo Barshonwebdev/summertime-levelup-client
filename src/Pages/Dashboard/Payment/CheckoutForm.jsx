@@ -102,7 +102,7 @@ const CheckoutForm = ({totalPrice}) => {
               showConfirmButton: false,
               timer: 1500,
             });
-           navigate('/classes')
+           navigate('/dashboard/enrolled')
           }
         })
       }
