@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useSelected from "../../../hooks/useSelected";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({totalPrice}) => {
     
@@ -12,18 +13,22 @@ const CheckoutForm = ({totalPrice}) => {
     const [selectedClassesCart]=useSelected();
     const stripe=useStripe();
     const elements=useElements();
+    const navigate=useNavigate();
     console.log(totalPrice);
     const [cardError, setCardError] = useState("");
     const [clientSecret, setClientSecret] = useState("");
     const [transactionId, setTransactionId] = useState("");
     const [processing, setProcessing] = useState(false);
     useEffect(()=>{
-      axios.post(`http://localhost:5000/paymentIntent`,{totalPrice})
-      .then(res=>{
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      })
-    },[])
+      
+        axios
+          .post(`http://localhost:5000/paymentIntent`, { totalPrice })
+          .then((res) => {
+            console.log(res.data.clientSecret);
+            setClientSecret(res.data.clientSecret);
+          });
+      }
+    ,[])
     const handleSubmit=async(event)=>{
         event.preventDefault();
         if (!stripe || !elements) {
@@ -78,6 +83,7 @@ const CheckoutForm = ({totalPrice}) => {
         const payment={
           email:user?.email,
           transactionId:paymentIntent.id,
+          date:new Date(),
           totalPrice,
           quantity:selectedClassesCart.length,
           itemsName:selectedClassesCart.map(item=>item.className),
@@ -88,7 +94,7 @@ const CheckoutForm = ({totalPrice}) => {
         axios.post('http://localhost:5000/payment',payment)
         .then(res=>{
           console.log(res.data);
-          if(res.data.insertedId){
+          if(res.data.insertedResult.insertedId){
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -96,6 +102,7 @@ const CheckoutForm = ({totalPrice}) => {
               showConfirmButton: false,
               timer: 1500,
             });
+           navigate('/classes')
           }
         })
       }

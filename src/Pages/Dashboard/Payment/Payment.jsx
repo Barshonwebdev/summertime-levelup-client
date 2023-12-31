@@ -2,9 +2,13 @@ import { loadStripe } from "@stripe/stripe-js";
 import useSelected from "../../../hooks/useSelected";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
+import { Link } from "react-router-dom";
+import { Button } from "@chakra-ui/react";
+
 
 const Payment = () => {
      const [selectedClasses] = useSelected();
+      
      const totalPrice = selectedClasses.reduce(
        (sum, item) => item.price + sum,
        0
@@ -13,7 +17,9 @@ const Payment = () => {
      const stripePromise=loadStripe(import.meta.env.VITE_STRIPE_PK);
     return (
       <div>
-        <p className="text-center text-3xl text-orange-600 italic my-3">Payment</p>
+        <p className="text-center text-3xl text-orange-600 italic my-3">
+          Payment
+        </p>
         <div className="text-center  text-xl">
           <h3>
             Total Classes selected:{" "}
@@ -32,6 +38,13 @@ const Payment = () => {
           <Elements stripe={stripePromise}>
             <CheckoutForm totalPrice={totalPrice}></CheckoutForm>
           </Elements>
+        </div>
+        <div className="my-5">
+          <div className="flex justify-center">
+            <Link to="/dashboard/selected">
+              <Button colorScheme="linkedin">Back to selected classes</Button>
+            </Link>
+          </div>
         </div>
       </div>
     );
