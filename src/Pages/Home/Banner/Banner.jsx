@@ -16,83 +16,88 @@ import "swiper/css/pagination";
 
 // import required modules
 import { FreeMode, Pagination, } from "swiper/modules";
+import { Fade } from "react-awesome-reveal";
 
 const Banner=()=> {
   return (
     <div>
       <div className="hidden md:block">
-        <Swiper
-          slidesPerView={4}
-          spaceBetween={20}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Pagination]}
-          className="mySwiper md:rounded-lg"
-        >
-          <SwiperSlide className="">
-            <img className="zoom" src={slider1} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider2} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider3} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider4} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider5} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider6} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider7} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider8} alt="" />
-          </SwiperSlide>
-        </Swiper>
+        <Fade>
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={20}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination]}
+            className="mySwiper md:rounded-lg"
+          >
+            <SwiperSlide className="">
+              <img className="zoom" src={slider1} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider2} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider3} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider4} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider5} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider6} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider7} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider8} alt="" />
+            </SwiperSlide>
+          </Swiper>
+        </Fade>
       </div>
       <div className=" md:hidden">
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={30}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Pagination]}
-          className="mySwiper rounded"
-        >
-          <SwiperSlide className="">
-            <img className="zoom" src={slider1} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider2} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider3} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider4} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider5} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider6} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider7} alt="" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img className="zoom" src={slider8} alt="" />
-          </SwiperSlide>
-        </Swiper>
+        <Fade>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination]}
+            className="mySwiper rounded"
+          >
+            <SwiperSlide className="">
+              <img className="zoom" src={slider1} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider2} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider3} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider4} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider5} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider6} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider7} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="zoom" src={slider8} alt="" />
+            </SwiperSlide>
+          </Swiper>
+        </Fade>
       </div>
     </div>
   );

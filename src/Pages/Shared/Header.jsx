@@ -34,11 +34,11 @@ const Header = () => {
         <div className=" hidden bg-yellow-50  p-1 md:flex justify-between  items-center px-10 md:px-0">
           <div>
             <div className="  rounded px-2">
-              <img className="md:w-1/2  " src={logo} alt="" />
+                <img className="md:w-1/2  " src={logo} alt="" />
             </div>
           </div>
-          <div className='flex items-center'>
-            <div className='me-5'>
+          <div className="flex items-center">
+            <div className="me-5">
               <img className="w-24" src={headerimg} alt="" />
             </div>
             <div className="">
@@ -101,7 +101,7 @@ const Header = () => {
         {/* mobile view  */}
         <div className="md:hidden bg-yellow-50 ">
           <div className="">
-            <img src={logo} alt="" />
+              <img src={logo} alt="" />
           </div>
           <div className="mx-4">
             <Menu autoSelect={false}>

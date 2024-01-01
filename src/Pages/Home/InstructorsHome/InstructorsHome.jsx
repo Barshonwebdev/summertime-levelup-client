@@ -16,6 +16,7 @@ import {
   ButtonGroup,
   Button,
 } from "@chakra-ui/react";
+import { Fade } from 'react-awesome-reveal';
 const InstructorsHome = () => {
     const [allInstructors]=useAllInstructors();
 
@@ -25,29 +26,35 @@ const InstructorsHome = () => {
           <Headline headline="Popular Instructors"></Headline>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 px-5 md:px-3 gap-y-5 my-5">
-          {allInstructors.slice(0, 6).map((instructor) => (
-            <div key={instructor._id}>
-              <Card className="hover:animate-pulse" height="100%" maxW="sm">
-                <CardBody>
-                  <Image align={""} src={instructor.propic} borderRadius="lg" />
-                </CardBody>
-                <CardFooter>
-                  {" "}
-                  <Stack mt="6" spacing="3">
-                    <Heading size="md">{instructor.name}</Heading>
-                    <Text color="red.600">
-                      <div className="flex items-center">
-                        <IoMail className="me-1"></IoMail> Mail:{" "}
-                        {instructor.email}
-                      </div>
-                    </Text>
-                  </Stack>
-                </CardFooter>
-              </Card>
-            </div>
-          ))}
-        </div>
+        <Fade direction='right'>
+          <div className="grid grid-cols-1 md:grid-cols-3 px-5 md:px-3 gap-y-5 my-5">
+            {allInstructors.slice(0, 6).map((instructor) => (
+              <div key={instructor._id}>
+                <Card className="hover:animate-pulse" height="100%" maxW="sm">
+                  <CardBody>
+                    <Image
+                      align={""}
+                      src={instructor.propic}
+                      borderRadius="lg"
+                    />
+                  </CardBody>
+                  <CardFooter>
+                    {" "}
+                    <Stack mt="6" spacing="3">
+                      <Heading size="md">{instructor.name}</Heading>
+                      <Text color="red.600">
+                        <div className="flex items-center">
+                          <IoMail className="me-1"></IoMail> Mail:{" "}
+                          {instructor.email}
+                        </div>
+                      </Text>
+                    </Stack>
+                  </CardFooter>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </Fade>
       </div>
     );
 };

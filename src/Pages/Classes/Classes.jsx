@@ -22,6 +22,7 @@ import useSelected from '../../hooks/useSelected';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { Fade } from 'react-awesome-reveal';
 const Classes = () => {
     const {user}=useAuth();
     const [isAdmin]=useAdmin();
@@ -101,72 +102,72 @@ const Classes = () => {
           </Link>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 px-5 md:px-3 gap-y-5 gap-x-4 my-5">
-          {allClasses.map((eachclass) => (
-            <div key={eachclass._id}>
-              <Card className="  " height="100%" maxW="sm">
-                <CardBody>
-                 
-                  <Image
-                    className=""
-                    align={""}
-                    src={eachclass.classPhoto}
-                    borderRadius="lg"
-                  />
-                </CardBody>
-                <CardFooter>
-                  <Stack mt="6" spacing="3">
-                    <Heading className="italic text-zinc-500" size="md">
-                      {eachclass.className}
-                    </Heading>
-                    <Text color="">
-                      <div className="space-y-2">
-                        <p className="text-violet-900 font-bold text-lg">
-                          Instructor: {eachclass.instructorName}
-                        </p>
-                        <p className=" font-semibold">
-                          Available Seats:{" "}
-                          <span className="text-red-600">
-                            {eachclass.seats}
-                          </span>
-                        </p>
-                        <p className=" font-semibold">
-                          Enrolled:{" "}
-                          <span className="text-blue-600">
-                            {eachclass.enrolled}
-                          </span>
-                        </p>
-                        <p className=" font-semibold">
-                          Price:{" "}
-                          <span className="text-green-600">
-                            ${eachclass.price}
-                          </span>
-                        </p>
+        <Fade direction='left'>
+          <div className="grid grid-cols-1 md:grid-cols-3 px-5 md:px-3 gap-y-5 gap-x-4 my-5">
+            {allClasses.map((eachclass) => (
+              <div key={eachclass._id}>
+                <Card className="  " height="100%" maxW="sm">
+                  <CardBody>
+                    <Image
+                      className=""
+                      align={""}
+                      src={eachclass.classPhoto}
+                      borderRadius="lg"
+                    />
+                  </CardBody>
+                  <CardFooter>
+                    <Stack mt="6" spacing="3">
+                      <Heading className="italic text-zinc-500" size="md">
+                        {eachclass.className}
+                      </Heading>
+                      <Text color="">
+                        <div className="space-y-2">
+                          <p className="text-violet-900 font-bold text-lg">
+                            Instructor: {eachclass.instructorName}
+                          </p>
+                          <p className=" font-semibold">
+                            Available Seats:{" "}
+                            <span className="text-red-600">
+                              {eachclass.seats}
+                            </span>
+                          </p>
+                          <p className=" font-semibold">
+                            Enrolled:{" "}
+                            <span className="text-blue-600">
+                              {eachclass.enrolled}
+                            </span>
+                          </p>
+                          <p className=" font-semibold">
+                            Price:{" "}
+                            <span className="text-green-600">
+                              ${eachclass.price}
+                            </span>
+                          </p>
 
-                        {isAdmin || isInstructor ? (
-                          <Button isDisabled={true} colorScheme="linkedin">
-                            Select
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() => handleSelectclass(eachclass)}
-                            isDisabled={false}
-                            color={"white"}
-                            bg={"cyan.500"}
-                            _hover={{ bg: "orange.300", color: "black" }}
-                          >
-                            Select
-                          </Button>
-                        )}
-                      </div>
-                    </Text>
-                  </Stack>
-                </CardFooter>
-              </Card>
-            </div>
-          ))}
-        </div>
-        
+                          {isAdmin || isInstructor ? (
+                            <Button isDisabled={true} colorScheme="linkedin">
+                              Select
+                            </Button>
+                          ) : (
+                            <Button
+                              onClick={() => handleSelectclass(eachclass)}
+                              isDisabled={false}
+                              color={"white"}
+                              bg={"cyan.500"}
+                              _hover={{ bg: "orange.300", color: "black" }}
+                            >
+                              Select
+                            </Button>
+                          )}
+                        </div>
+                      </Text>
+                    </Stack>
+                  </CardFooter>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </Fade>
       </div>
     );
 };
