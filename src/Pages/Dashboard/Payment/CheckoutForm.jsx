@@ -7,94 +7,88 @@ import useSelected from "../../../hooks/useSelected";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const CheckoutForm = ({totalPrice}) => {
-    
-    const {user}=useAuth();
-    const [selectedClassesCart]=useSelected();
-    const stripe=useStripe();
-    const elements=useElements();
-    const navigate=useNavigate();
-    console.log(totalPrice);
-    const [cardError, setCardError] = useState("");
-    const [clientSecret, setClientSecret] = useState("");
-    const [transactionId, setTransactionId] = useState("");
-    const [processing, setProcessing] = useState(false);
-    useEffect(()=>{
-      
-        axios
-          .post(`http://localhost:5000/paymentIntent`, { totalPrice })
-          .then((res) => {
-            console.log(res.data.clientSecret);
-            setClientSecret(res.data.clientSecret);
-          });
-      }
-    ,[])
-    const handleSubmit=async(event)=>{
-        event.preventDefault();
-        if (!stripe || !elements) {
-          return;
-        }
-        
-         const card = elements.getElement(CardElement);
+const CheckoutForm = ({ totalPrice }) => {
+  const { user } = useAuth();
+  const [selectedClassesCart] = useSelected();
+  const stripe = useStripe();
+  const elements = useElements();
+  const navigate = useNavigate();
+  console.log(totalPrice);
+  const [cardError, setCardError] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
+  const [transactionId, setTransactionId] = useState("");
+  const [processing, setProcessing] = useState(false);
+  useEffect(() => {
+    axios
+      .post(`https://summertime-levelup.onrender.com/paymentIntent`, {
+        totalPrice,
+      })
+      .then((res) => {
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      });
+  }, []);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!stripe || !elements) {
+      return;
+    }
 
-         if (card === null) {
-           return;
-         }
+    const card = elements.getElement(CardElement);
 
-         const {error,paymentMethod}=await stripe.createPaymentMethod({
-            type:'card',
-            card,
-         });
+    if (card === null) {
+      return;
+    }
 
-         if(error){
-            console.log(error);
-            setCardError(error.message);
-         }
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card,
+    });
 
-         else{
-            console.log('payment method', paymentMethod);
-            setCardError('');
-         }
+    if (error) {
+      console.log(error);
+      setCardError(error.message);
+    } else {
+      console.log("payment method", paymentMethod);
+      setCardError("");
+    }
 
-         setProcessing(true);
-         const { paymentIntent, error:confirmError } = await stripe.confirmCardPayment(
-           clientSecret,
-           {
-             payment_method: {
-               card: card,
-               billing_details: {
-                 email:user?.email || 'Unknown',
-                 name:user?.displayName || 'Anonymous',
-               },
-             },
-           },
-         );
-        
-        if(confirmError){
-        console.log(confirmError);
-        
-        }
+    setProcessing(true);
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email: user?.email || "Unknown",
+            name: user?.displayName || "Anonymous",
+          },
+        },
+      });
 
-     
-      console.log(paymentIntent)
-      if(paymentIntent.status==='succeeded'){
-        setTransactionId(paymentIntent.id);
-        console.log(transactionId);
-        const payment={
-          email:user?.email,
-          transactionId:paymentIntent.id,
-          date:new Date(),
-          totalPrice,
-          quantity:selectedClassesCart.length,
-          itemsName:selectedClassesCart.map(item=>item.className),
-          selectedItemId:selectedClassesCart.map(item=>item._id),
-          classId:selectedClassesCart.map(item=>item.classId),
-        };
+    if (confirmError) {
+      console.log(confirmError);
+    }
 
-        axios.post('http://localhost:5000/payment',payment)
-        .then(res=>{
+    console.log(paymentIntent);
+    if (paymentIntent.status === "succeeded") {
+      setTransactionId(paymentIntent.id);
+      console.log(transactionId);
+      const payment = {
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        date: new Date(),
+        totalPrice,
+        quantity: selectedClassesCart.length,
+        itemsName: selectedClassesCart.map((item) => item.className),
+        selectedItemId: selectedClassesCart.map((item) => item._id),
+        classId: selectedClassesCart.map((item) => item.classId),
+      };
+
+      axios
+        .post("https://summertime-levelup.onrender.com/payment", payment)
+        .then((res) => {
           console.log(res.data);
-          if(res.data.insertedResult.insertedId){
+          if (res.data.insertedResult.insertedId) {
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -102,51 +96,55 @@ const CheckoutForm = ({totalPrice}) => {
               showConfirmButton: false,
               timer: 1500,
             });
-           navigate('/dashboard/enrolled')
+            navigate("/dashboard/enrolled");
           }
-        })
-      }
-        
-      setProcessing(false);
+        });
     }
-    
-    return (
-      <div className="">
-        <form className="" onSubmit={handleSubmit}>
-          <CardElement
-            className=" w-96"
-            options={{
-              style: {
-                base: {
-                  fontSize: "16px",
-                  color: "#424770",
-                  "::placeholder": {
-                    color: "#aab7c4",
-                  },
-                },
-                invalid: {
-                  color: "#9e2146",
+
+    setProcessing(false);
+  };
+
+  return (
+    <div className="">
+      <form className="" onSubmit={handleSubmit}>
+        <CardElement
+          className=" w-96"
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
                 },
               },
-            }}
-          />
-          <div className="flex justify-center">
-            <Button
-              className="mt-4"
-              colorScheme="green"
-              type="submit"
-              disabled={!stripe || !clientSecret || processing}
-            >
-              Pay
-            </Button>
-          </div>
-          {cardError && (
-            <p className="text-red-600 mt-2 text-center">{cardError}</p>
-          )}
-          {transactionId && <p className="text-green-600 mt-2 text-center">Payment Successful. ID: {transactionId}</p>}
-        </form>
-      </div>
-    );
+              invalid: {
+                color: "#9e2146",
+              },
+            },
+          }}
+        />
+        <div className="flex justify-center">
+          <Button
+            className="mt-4"
+            colorScheme="green"
+            type="submit"
+            disabled={!stripe || !clientSecret || processing}
+          >
+            Pay
+          </Button>
+        </div>
+        {cardError && (
+          <p className="text-red-600 mt-2 text-center">{cardError}</p>
+        )}
+        {transactionId && (
+          <p className="text-green-600 mt-2 text-center">
+            Payment Successful. ID: {transactionId}
+          </p>
+        )}
+      </form>
+    </div>
+  );
 };
 
 export default CheckoutForm;

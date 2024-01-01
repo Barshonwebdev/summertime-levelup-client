@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import useAuth from "./useAuth";
 
-const useAdmin=()=>{
-    const {user}=useAuth();
-    const [isAdmin,setIsAdmin]=useState(false);
-    useEffect(()=>{
-        fetch(`http://localhost:5000/users/admin/${user?.email}`)
-        .then(res=>res.json())
-        .then(data=>{
-            setIsAdmin(data.admin)
-        });
-    },[user?.email])
+const useAdmin = () => {
+  const { user } = useAuth();
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    fetch(`https://summertime-levelup.onrender.com/users/admin/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setIsAdmin(data.admin);
+      });
+  }, [user?.email]);
 
-    return [isAdmin];
-}
+  return [isAdmin];
+};
 
 export default useAdmin;

@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import axios from "axios";
-const image_token=import.meta.env.VITE_IMGTOKEN;
+const image_token = import.meta.env.VITE_IMGTOKEN;
 const Signup = () => {
   const img_hosting_url = `https://api.imgbb.com/1/upload?&key=${image_token}`;
   const {
@@ -16,62 +16,56 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [error,setError]=useState('');
-  const navigate=useNavigate();
-  const {createUser,updateUser}=useAuth();
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { createUser, updateUser } = useAuth();
   const onSubmit = (data) => {
     console.log(data);
-    
-    if(data.password===data.confirm){
-      if(data.password.length>=6){
-    createUser(data.email,data.password)
-    .then(result=>{
-      
-      const loggedinUser=result.user;
-      console.log(loggedinUser);
-      
-      const formdata = new FormData();
-      formdata.append("image", data.photo[0]);
-      fetch(img_hosting_url, {
-        method: "POST",
-        body: formdata,
-      })
-        .then((res) => res.json())
-        .then((imgResponse) => {
-          console.log(imgResponse);
-          updateUser(data.name, imgResponse.data.url).then((result) => {
-            const savedUser = {
-              name: loggedinUser.displayName,
-              email: loggedinUser.email,
-              propic:imgResponse.data.url,
-            };
 
-            axios
-              .post("http://localhost:5000/users", savedUser)
-              .then((response) => {
-                console.log(response);
-                reset();
-                Swal.fire(
-                  `User Account (email: ${loggedinUser.email}) Created`
-                );
-                navigate("/");
+    if (data.password === data.confirm) {
+      if (data.password.length >= 6) {
+        createUser(data.email, data.password).then((result) => {
+          const loggedinUser = result.user;
+          console.log(loggedinUser);
+
+          const formdata = new FormData();
+          formdata.append("image", data.photo[0]);
+          fetch(img_hosting_url, {
+            method: "POST",
+            body: formdata,
+          })
+            .then((res) => res.json())
+            .then((imgResponse) => {
+              console.log(imgResponse);
+              updateUser(data.name, imgResponse.data.url).then((result) => {
+                const savedUser = {
+                  name: loggedinUser.displayName,
+                  email: loggedinUser.email,
+                  propic: imgResponse.data.url,
+                };
+
+                axios
+                  .post(
+                    "https://summertime-levelup.onrender.com/users",
+                    savedUser
+                  )
+                  .then((response) => {
+                    console.log(response);
+                    reset();
+                    Swal.fire(
+                      `User Account (email: ${loggedinUser.email}) Created`
+                    );
+                    navigate("/");
+                  });
               });
-          });
+            });
         });
-      
-      
-
-    
-    })
-  }
-  else {
-    setError('Password must be atleast 6 characters')
-  }
-  }
-  else {
-    setError('Password didn`t match');
-  }
-    
+      } else {
+        setError("Password must be atleast 6 characters");
+      }
+    } else {
+      setError("Password didn`t match");
+    }
   };
   console.log(errors);
   return (
@@ -80,7 +74,6 @@ const Signup = () => {
       <Card
         direction={{ base: "column-reverse", sm: "row-reverse" }}
         overflow="hidden"
-        
         justify="center"
         align="center"
       >
@@ -107,7 +100,7 @@ const Signup = () => {
                     className="rounded p-1 text-black"
                     type="text"
                     placeholder="Full Name"
-                    {...register("name", {  })}
+                    {...register("name", {})}
                   />
                 </div>
                 <div>
@@ -137,21 +130,20 @@ const Signup = () => {
                     className="rounded p-1 text-black"
                     type="password"
                     placeholder="confirm password"
-                    {...register("confirm", { required:true })}
+                    {...register("confirm", { required: true })}
                   />
                 </div>
 
-                
-                  <div className="w-2/3 ml-3 ">
-                    <label>Photo</label>
-                    <br />
-                    <input
-                      className="rounded p-1 w-full "
-                      type="file"
-                      {...register("photo", { required:true })}
-                    />
-                  </div>
-                
+                <div className="w-2/3 ml-3 ">
+                  <label>Photo</label>
+                  <br />
+                  <input
+                    className="rounded p-1 w-full "
+                    type="file"
+                    {...register("photo", { required: true })}
+                  />
+                </div>
+
                 <div className="flex justify-center">
                   <input
                     className="bg-white font-semibold mt-3 py-1 px-4 rounded-lg text-red-600  hover:bg-blue-800 hover:text-white"

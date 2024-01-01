@@ -4,27 +4,27 @@ import useAuth from "./useAuth";
 const useInstructor = () => {
   const { user } = useAuth();
   const [isInstructor, setIsInstructor] = useState(false);
-  const [allInstructors,setAllInstructors]=useState([]);
+  const [allInstructors, setAllInstructors] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/users/instructor/${user?.email}`)
+    fetch(
+      `https://summertime-levelup.onrender.com/users/instructor/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setIsInstructor(data.instructor);
-        
       });
   }, [user?.email]);
 
+  useEffect(() => {
+    fetch(`https://summertime-levelup.onrender.com/users/instructors`)
+      .then((res) => res.json())
+      .then((data) => {
+        setAllInstructors(data);
+        console.log(data);
+      });
+  }, []);
 
-  useEffect(()=>{
-    fetch(`http://localhost:5000/users/instructors`)
-    .then((res)=>res.json())
-    .then((data)=>{
-      setAllInstructors(data);
-      console.log(data);
-    });
-  },[])
-
-  return [isInstructor,allInstructors];
+  return [isInstructor, allInstructors];
 };
 
 export default useInstructor;

@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 
 const useAllInstructors = () => {
-  
-  
   const [allInstructors, setAllInstructors] = useState([]);
- 
+
   useEffect(() => {
-    fetch(`http://localhost:5000/users/instructors`)
+    fetch(`https://summertime-levelup.onrender.com/users/instructors`)
       .then((res) => res.json())
       .then((data) => {
         setAllInstructors(data);

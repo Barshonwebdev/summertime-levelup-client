@@ -7,7 +7,7 @@ const useEnrolled = () => {
     queryKey: ["enrolledClasses", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/enrolledclasses?email=${user?.email}`
+        `https://summertime-levelup.onrender.com/enrolledclasses?email=${user?.email}`
       );
       return res.json();
     },

@@ -103,9 +103,10 @@ const router = createBrowserRouter([
             <UpdateClass></UpdateClass>
           </InstructorRoute>
         ),
-        loader: ({ params }) => 
-          fetch(`http://localhost:5000/updateclass/${params.id}`),
-        
+        loader: ({ params }) =>
+          fetch(
+            `https://summertime-levelup.onrender.com/updateclass/${params.id}`
+          ),
       },
 
       {
