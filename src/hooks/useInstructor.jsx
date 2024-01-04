@@ -7,7 +7,7 @@ const useInstructor = () => {
   const [allInstructors, setAllInstructors] = useState([]);
   useEffect(() => {
     fetch(
-      `https://summertime-levelup.onrender.com/users/instructor/${user?.email}`
+      `https://summertime-levelup-server.vercel.app/users/instructor/${user?.email}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -16,7 +16,7 @@ const useInstructor = () => {
   }, [user?.email]);
 
   useEffect(() => {
-    fetch(`https://summertime-levelup.onrender.com/users/instructors`)
+    fetch(`https://summertime-levelup-server.vercel.app/users/instructors`)
       .then((res) => res.json())
       .then((data) => {
         setAllInstructors(data);

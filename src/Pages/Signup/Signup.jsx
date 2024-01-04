@@ -46,7 +46,7 @@ const Signup = () => {
 
                 axios
                   .post(
-                    "https://summertime-levelup.onrender.com/users",
+                    "https://summertime-levelup-server.vercel.app/users",
                     savedUser
                   )
                   .then((response) => {

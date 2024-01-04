@@ -24,7 +24,7 @@ const UpdateClass = () => {
 
     axios
       .patch(
-        `https://summertime-levelup.onrender.com/updateclassform/${classroomData._id}`,
+        `https://summertime-levelup-server.vercel.app/updateclassform/${classroomData._id}`,
         updateClassEntry
       )
       .then((data) => {

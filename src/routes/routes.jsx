@@ -105,7 +105,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://summertime-levelup.onrender.com/updateclass/${params.id}`
+            `https://summertime-levelup-server.vercel.app/updateclass/${params.id}`
           ),
       },
 

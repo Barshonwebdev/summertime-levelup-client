@@ -45,7 +45,7 @@ const Classes = () => {
         seats,
         instructorName,
       };
-      fetch(`https://summertime-levelup.onrender.com/selectedclasses`, {
+      fetch(`https://summertime-levelup-server.vercel.app/selectedclasses`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

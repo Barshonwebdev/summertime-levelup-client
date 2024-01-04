@@ -42,7 +42,7 @@ const Signin = () => {
         email: loggedinUser.email,
       };
       axios
-        .post("https://summertime-levelup.onrender.com/users", savedUser)
+        .post("https://summertime-levelup-server.vercel.app/users", savedUser)
         .then((response) => {
           console.log(response.data);
           console.log(location);
@@ -63,7 +63,7 @@ const Signin = () => {
         email: loggedinUser.email,
       };
       axios
-        .post("https://summertime-levelup.onrender.com/users", savedUser)
+        .post("https://summertime-levelup-server.vercel.app/users", savedUser)
         .then((response) => {
           console.log(response.data);
           Swal.fire(

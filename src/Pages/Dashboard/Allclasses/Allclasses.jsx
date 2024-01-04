@@ -38,7 +38,7 @@ const Allclasses = () => {
     queryKey: "allclasses",
     queryFn: async () => {
       const res = await fetch(
-        "https://summertime-levelup.onrender.com/classesquery"
+        "https://summertime-levelup-server.vercel.app/classesquery"
       );
       return res.json();
     },
@@ -49,7 +49,7 @@ const Allclasses = () => {
   const handleApprove = (eachclass) => {
     axios
       .patch(
-        `https://summertime-levelup.onrender.com/classses/approved/${eachclass._id}`
+        `https://summertime-levelup-server.vercel.app/classses/approved/${eachclass._id}`
       )
       .then((response) => {
         console.log(response.data);
@@ -62,7 +62,7 @@ const Allclasses = () => {
   const handleDeny = (eachclass) => {
     axios
       .patch(
-        `https://summertime-levelup.onrender.com/classes/denied/${eachclass._id}`
+        `https://summertime-levelup-server.vercel.app/classes/denied/${eachclass._id}`
       )
       .then((response) => {
         console.log(response.data);
@@ -75,7 +75,7 @@ const Allclasses = () => {
   const handleDelete = (eachclass) => {
     axios
       .delete(
-        `https://summertime-levelup.onrender.com/classesquery/${eachclass._id}`
+        `https://summertime-levelup-server.vercel.app/classesquery/${eachclass._id}`
       )
       .then((response) => {
         console.log(response.data);

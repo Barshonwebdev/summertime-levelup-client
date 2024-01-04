@@ -7,7 +7,7 @@ const useSelected = () => {
     queryKey: ["selectedClasses", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `https://summertime-levelup.onrender.com/selectedclasses?email=${user?.email}`
+        `https://summertime-levelup-server.vercel.app/selectedclasses?email=${user?.email}`
       );
       return res.json();
     },

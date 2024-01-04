@@ -5,11 +5,13 @@ const useAllClasses = () => {
   const [allClasses, setAllClasses] = useState([]);
   const [homepageClasses, setHomepageClasses] = useState([]);
   useEffect(() => {
-    axios(`https://summertime-levelup.onrender.com/classes`).then((data) => {
-      console.log(data.data);
-      setAllClasses(data.data.allresult);
-      setHomepageClasses(data.data.homepageResult);
-    });
+    axios(`https://summertime-levelup-server.vercel.app/classes`).then(
+      (data) => {
+        console.log(data.data);
+        setAllClasses(data.data.allresult);
+        setHomepageClasses(data.data.homepageResult);
+      }
+    );
   }, []);
 
   return [allClasses, homepageClasses];

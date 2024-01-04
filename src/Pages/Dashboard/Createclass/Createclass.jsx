@@ -36,7 +36,7 @@ const Createclass = () => {
 
         axios
           .post(
-            "https://summertime-levelup.onrender.com/createclass",
+            "https://summertime-levelup-server.vercel.app/createclass",
             createClassEntry
           )
           .then((result) => {

@@ -7,7 +7,7 @@ import { Fade } from "react-awesome-reveal";
 const Stats = () => {
   const [stats, setStats] = useState({});
   useEffect(() => {
-    axios("https://summertime-levelup.onrender.com/stats").then((data) => {
+    axios("https://summertime-levelup-server.vercel.app/stats").then((data) => {
       console.log(data.data);
       setStats(data.data);
     });

@@ -21,7 +21,7 @@ const Myclasses = () => {
   const [myclasses, setMyClasses] = useState([]);
   useEffect(() => {
     fetch(
-      `https://summertime-levelup.onrender.com/myclasses?email=${user?.email}`
+      `https://summertime-levelup-server.vercel.app/myclasses?email=${user?.email}`
     )
       .then((res) => res.json())
       .then((data) => {

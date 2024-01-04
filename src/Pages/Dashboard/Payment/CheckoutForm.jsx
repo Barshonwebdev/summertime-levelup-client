@@ -20,7 +20,7 @@ const CheckoutForm = ({ totalPrice }) => {
   const [processing, setProcessing] = useState(false);
   useEffect(() => {
     axios
-      .post(`https://summertime-levelup.onrender.com/paymentIntent`, {
+      .post(`https://summertime-levelup-server.vercel.app/paymentIntent`, {
         totalPrice,
       })
       .then((res) => {
@@ -85,7 +85,7 @@ const CheckoutForm = ({ totalPrice }) => {
       };
 
       axios
-        .post("https://summertime-levelup.onrender.com/payment", payment)
+        .post("https://summertime-levelup-server.vercel.app/payment", payment)
         .then((res) => {
           console.log(res.data);
           if (res.data.insertedResult.insertedId) {

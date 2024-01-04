@@ -24,7 +24,7 @@ const Selectedclasses = () => {
   const handleDeleteClass = (eachclass) => {
     axios
       .delete(
-        `https://summertime-levelup.onrender.com/selectedclassesDelete/${eachclass._id}`
+        `https://summertime-levelup-server.vercel.app/selectedclassesDelete/${eachclass._id}`
       )
       .then((res) => {
         console.log(res.data);

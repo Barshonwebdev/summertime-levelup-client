@@ -16,7 +16,7 @@ const Paymenthistory = () => {
   const [history, setHistory] = useState([]);
   useEffect(() => {
     fetch(
-      `https://summertime-levelup.onrender.com/paymenthistory?email=${user?.email}`
+      `https://summertime-levelup-server.vercel.app/paymenthistory?email=${user?.email}`
     )
       .then((res) => res.json())
       .then((data) => {

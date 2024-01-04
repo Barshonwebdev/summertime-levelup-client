@@ -16,14 +16,18 @@ const Allusers = () => {
   const { data: allusers = [], refetch } = useQuery({
     queryKey: ["allusers"],
     queryFn: async () => {
-      const res = await fetch("https://summertime-levelup.onrender.com/users");
+      const res = await fetch(
+        "https://summertime-levelup-server.vercel.app/users"
+      );
       return res.json();
     },
   });
 
   const handleMakeAdmin = (user) => {
     axios
-      .patch(`https://summertime-levelup.onrender.com/users/admin/${user._id}`)
+      .patch(
+        `https://summertime-levelup-server.vercel.app/users/admin/${user._id}`
+      )
       .then((response) => {
         console.log(response.data);
         if (response.data.modifiedCount > 0) {
@@ -35,7 +39,7 @@ const Allusers = () => {
   const handleMakeInstructor = (user) => {
     axios
       .patch(
-        `https://summertime-levelup.onrender.com/users/instructor/${user._id}`
+        `https://summertime-levelup-server.vercel.app/users/instructor/${user._id}`
       )
       .then((response) => {
         console.log(response.data);
@@ -48,7 +52,7 @@ const Allusers = () => {
 
   const handleDeleteUser = (user) => {
     axios
-      .delete(`https://summertime-levelup.onrender.com/users/${user._id}`)
+      .delete(`https://summertime-levelup-server.vercel.app/users/${user._id}`)
       .then((response) => {
         console.log(response.data);
         if (response.data.deletedCount > 0) {
