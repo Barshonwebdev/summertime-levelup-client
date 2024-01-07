@@ -96,7 +96,7 @@ An instructor is a primary user later been made an instructor by an admin of the
 
 •Firebase for authentication and frontend hosting
 
-•Render for server hosting
+•Vercel for server hosting
 
 •Chakra UI for components
 
