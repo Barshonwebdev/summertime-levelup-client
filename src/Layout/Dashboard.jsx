@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../Pages/Shared/Header';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import Footer from '../Pages/Shared/Footer';
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, Input, Text, useDisclosure } from '@chakra-ui/react';
 import { FaHome } from "react-icons/fa";
@@ -156,6 +156,7 @@ const Dashboard = () => {
         </div>
 
         <Footer></Footer>
+        <ScrollRestoration></ScrollRestoration>
       </div>
     );
 };
